@@ -138,10 +138,15 @@
     });
 
     document.querySelectorAll(".modal-overlay").forEach(function (overlay) {
-      // click outside the panel closes
-      overlay.addEventListener("click", function (e) { if (e.target === overlay) close(); });
-      var closeBtn = overlay.querySelector(".modal-close");
-      if (closeBtn) closeBtn.addEventListener("click", close);
+      // desktop: a click anywhere dismisses the modal; mobile sheet: only the
+      // backdrop closes, so you can still scroll/tap inside the sheet
+      overlay.addEventListener("click", function (e) {
+        if (window.matchMedia("(max-width: 640px)").matches) {
+          if (e.target === overlay) close();
+        } else {
+          close();
+        }
+      });
 
       // mobile: swipe the sheet down to close
       var sheet = overlay.querySelector(".modal");
