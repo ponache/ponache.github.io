@@ -29,7 +29,7 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 84px; background: var(--bg); }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
 
 body {
   margin: 0;
@@ -82,28 +82,14 @@ a   { color: inherit; text-decoration: none; }
    ============================================================ */
 .site-header {
   position: sticky; top: 0; z-index: 50;
-  /* tuck the bar under the iOS status bar / notch */
-  padding-top: env(safe-area-inset-top);
-  /* Keep the sticky PARENT transparent: Safari 26 (Liquid Glass) samples
-     background-color/backdrop-filter of sticky elements near the top edge to
-     tint the status bar — a translucent value here makes it fall back to a
-     solid white strip. Transparent ⇒ Safari keeps its native frosted status bar. */
-  border-bottom: 1px solid transparent;
-  transition: border-color var(--t-fast);
-}
-/* The actual frosted glass lives on a pseudo-element. Safari's status-bar
-   tint sampler ignores pseudo-elements, so it won't paint a white strip, but
-   the blur still renders visually — extending up under the status bar too. */
-.site-header::before {
-  content: ""; position: absolute; inset: 0; z-index: -1;
   background: color-mix(in srgb, var(--bg) 80%, transparent);
   backdrop-filter: saturate(180%) blur(18px);
   -webkit-backdrop-filter: saturate(180%) blur(18px);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--t-fast);
 }
 .site-header.scrolled { border-bottom-color: var(--line); }
-.nav { position: relative; display: flex; align-items: center; justify-content: space-between; height: 64px;
-  padding-left: max(var(--gutter), env(safe-area-inset-left));
-  padding-right: max(var(--gutter), env(safe-area-inset-right)); }
+.nav { position: relative; display: flex; align-items: center; justify-content: space-between; height: 64px; }
 .brand { font-weight: 700; letter-spacing: -0.02em; font-size: 16px; display: inline-flex; align-items: center; gap: 6px; }
 .brand .chev { font-size: 20px; line-height: 1; }
 /* geometrically centered on the page */
