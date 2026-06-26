@@ -89,17 +89,6 @@ a   { color: inherit; text-decoration: none; }
   transition: border-color var(--t-fast);
 }
 .site-header.scrolled { border-bottom-color: var(--line); }
-
-/* In-app browsers (e.g. Telegram) render the page edge-to-edge, so page
-   content shows through the translucent top zone where their search bar floats.
-   This opaque filler covers exactly that zone — its height is the top safe-area
-   inset, which is 0 in regular Safari (so nothing changes there) but equals the
-   inset height inside in-app browsers, hiding the see-through gap behind white. */
-body::before {
-  content: ""; position: fixed; top: 0; left: 0; right: 0;
-  height: env(safe-area-inset-top, 0px);
-  background: var(--bg); z-index: 100; pointer-events: none;
-}
 .nav { position: relative; display: flex; align-items: center; justify-content: space-between; height: 64px; }
 .brand { font-weight: 700; letter-spacing: -0.02em; font-size: 16px; display: inline-flex; align-items: center; gap: 6px; }
 .brand .chev { font-size: 20px; line-height: 1; }
