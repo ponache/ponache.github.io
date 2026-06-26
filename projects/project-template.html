@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Название проекта — Имя Фамилия</title>
+  <meta name="description" content="Кейс: название проекта." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+  <!-- ============ HEADER (full-width sticky bar, back) ============ -->
+  <header class="site-header">
+    <div class="wrap nav">
+      <button class="nav-burger" aria-label="Меню" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none"><path d="M4.5 10C5.60457 10 6.5 10.8954 6.5 12C6.5 13.1046 5.60457 14 4.5 14C3.39543 14 2.5 13.1046 2.5 12C2.5 10.8954 3.39543 10 4.5 10Z" fill="currentColor"/><path d="M12 10C13.1046 10 14 10.8954 14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10Z" fill="currentColor"/><path d="M19.5 10C20.6046 10 21.5 10.8954 21.5 12C21.5 13.1046 20.6046 14 19.5 14C18.3954 14 17.5 13.1046 17.5 12C17.5 10.8954 18.3954 10 19.5 10Z" fill="currentColor"/></svg></button>
+      <a class="nav-back" href="../index.html" aria-label="Назад"><svg viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.8 11L13.4 5.4L12 4L4 12L12 20L13.4 18.6L7.8 13H20V11H7.8Z" fill="currentColor"/></svg></a>
+      <nav class="nav-links">
+        <a href="../index.html" data-ru="Работы" data-en="Work">Работы</a>
+        <a href="../about.html" data-ru="Обо мне" data-en="About">Обо мне</a>
+      </nav>
+      <div class="nav-right">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button data-lang="en" class="active">EN</button>
+          <button data-lang="ru">RU</button>
+        </div>
+        <a class="btn btn-primary" href="../index.html#contact" aria-label="Связаться"><span class="cta-label" data-ru="Связаться" data-en="Get in touch">Связаться</span><svg class="cta-ic" viewBox="0 0 24 24" fill="none"><path d="M9.55825 14.3029L15.9202 19.0033C16.6462 19.4038 17.1702 19.1964 17.351 18.3292L19.9407 6.12583C20.2058 5.06284 19.5355 4.58072 18.841 4.89603L3.63455 10.7596C2.59657 11.1759 2.60262 11.755 3.44535 12.013L7.34766 13.231L16.3819 7.53138C16.8084 7.27275 17.1998 7.4118 16.8786 7.69693" fill="currentColor"/></svg></a>
+      </div>
+    </div>
+    <div class="nav-menu">
+      <a href="../index.html" data-ru="Работы" data-en="Work">Работы</a>
+      <a href="../about.html" data-ru="Обо мне" data-en="About">Обо мне</a>
+      <div class="menu-lang">
+        <span class="menu-lang-label" data-ru="Язык" data-en="Language">Язык</span>
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button data-lang="en" class="active">EN</button>
+          <button data-lang="ru">RU</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========================= PROJECT HERO ========================= -->
+    <section class="project-hero">
+      <div class="wrap">
+        <div class="eyebrow reveal" data-ru="Дизайн-система · B2B" data-en="Design system · B2B">Дизайн-система · B2B</div>
+        <h1 class="display reveal" data-ru="Название проекта" data-en="Project title">Название проекта</h1>
+        <p class="project-summary reveal"
+           data-ru="Одно-два предложения о сути проекта: какую задачу решали и какого результата достигли."
+           data-en="One or two sentences about the project: the problem you solved and the outcome.">Одно-два предложения о сути проекта: какую задачу решали и какого результата достигли.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         КЕЙС — совмещённые плашки (заголовок + текст + место под скрин).
+         Сетка 2 колонки, отступы 24px. Варианты:
+           .span2     — на всю ширину
+           .dark      — тёмная плашка (белый текст)
+           .overlay   — текст поверх фото
+           .media-only — только картинка (обложка)
+         Бабл .tag c-blue/green/orange/purple/pink — цветной лейбл.
+         Когда будут картинки: замени <div class="ph">…</div> на <img src="...">.
+         ============================================================ -->
+    <div class="wrap">
+      <div class="case-flow">
+
+        <!-- обложка -->
+        <div class="feature-card media-only span2 reveal">
+          <div class="ft-media"><div class="ph" data-ru="Обложка кейса" data-en="Case cover">Обложка кейса</div></div>
+        </div>
+
+        <!-- контекст + анатомия -->
+        <div class="feature-card reveal">
+          <div class="ft-text">
+            <h3 data-ru="Контекст и задача" data-en="Context & problem">Контекст и задача</h3>
+            <p data-ru="Что за продукт, какую проблему испытывали пользователи и какую цель поставили."
+               data-en="The product, the problem users faced, and the goal you set.">Что за продукт, какую проблему испытывали пользователи и какую цель поставили.</p>
+          </div>
+          <div class="ft-media"><div class="ph">Скриншот · контекст</div></div>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="ft-text">
+            <h3 data-ru="Что выяснили" data-en="What we learned">Что выяснили</h3>
+            <p data-ru="Интервью, данные, конкуренты — ключевые инсайты, на которых строилось решение."
+               data-en="Interviews, data, competitors — the key insights the solution was built on.">Интервью, данные, конкуренты — ключевые инсайты, на которых строилось решение.</p>
+          </div>
+          <div class="ft-media"><div class="ph">Скриншот · исследование</div></div>
+        </div>
+
+        <!-- крупная плашка: текст поверх фото -->
+        <div class="feature-card overlay span2 reveal">
+          <div class="ft-text">
+            <h3 data-ru="Как шли к решению" data-en="How we got there">Как шли к решению</h3>
+            <p data-ru="Ход мысли: гипотезы, скетчи, прототипы, тестирование."
+               data-en="The thinking: hypotheses, sketches, prototypes, testing.">Ход мысли: гипотезы, скетчи, прототипы, тестирование.</p>
+          </div>
+          <div class="ft-media"><div class="ph on-dark">Крупное фото / флоу</div></div>
+        </div>
+
+        <!-- тёмная + светлая -->
+        <div class="feature-card dark reveal">
+          <div class="ft-text">
+            <h3 data-ru="Финальное решение" data-en="The solution">Финальное решение</h3>
+            <p data-ru="Ключевые экраны и почему именно так."
+               data-en="The key screens and why it works this way.">Ключевые экраны и почему именно так.</p>
+          </div>
+          <div class="ft-media"><div class="ph on-dark">Скриншот · решение</div></div>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="ft-text">
+            <h3 data-ru="Внимание к деталям" data-en="Attention to detail">Внимание к деталям</h3>
+            <p data-ru="Состояния, микровзаимодействия, граничные случаи."
+               data-en="States, micro-interactions, edge cases.">Состояния, микровзаимодействия, граничные случаи.</p>
+          </div>
+          <div class="ft-media"><div class="ph">Скриншот · детали</div></div>
+        </div>
+
+        <!-- результат на всю ширину -->
+        <div class="feature-card span2 reveal">
+          <div class="ft-text">
+            <h3 data-ru="Чем закончилось" data-en="The outcome">Чем закончилось</h3>
+            <ul>
+              <li data-ru="+ XX% к ключевой метрике" data-en="+ XX% on the key metric">+ XX% к ключевой метрике</li>
+              <li data-ru="Сократили путь пользователя с N до M шагов" data-en="Reduced the user flow from N to M steps">Сократили путь пользователя с N до M шагов</li>
+              <li data-ru="Решение легло в основу дизайн-системы" data-en="The solution became the basis of the design system">Решение легло в основу дизайн-системы</li>
+            </ul>
+          </div>
+          <div class="ft-media"><div class="ph">Скриншот · метрики / итог</div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================= NEXT PROJECT (компактно) ========================= -->
+    <section class="next">
+      <div class="wrap reveal">
+        <a href="project-template.html">
+          <div class="next-text">
+            <span class="eyebrow" data-ru="Следующий проект" data-en="Next project">Следующий проект</span>
+            <h2 class="display" data-ru="Название проекта" data-en="Project title">Название проекта</h2>
+          </div>
+          <div class="next-cover"><div class="ph">Обложка</div></div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="wrap">
+    <div class="legal">
+      <div class="legal-left">
+        <span class="legal-logo">Logo</span>
+        <span>© <span data-year></span> Николай Щекочихин</span>
+      </div>
+      <a href="../index.html#contact" data-ru="Связаться" data-en="Get in touch">Связаться</a>
+    </div>
+  </div>
+
+  <script src="../main.js"></script>
+</body>
+</html>

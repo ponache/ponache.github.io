@@ -1,0 +1,20 @@
+# macOS системный мусор
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+# Эскизы / превью
+._*
+.Spotlight-V100
+.Trashes
+
+# Редакторы
+.vscode/
+.idea/
+*.swp
+*~
+
+# Логи и временные файлы
+*.log
+node_modules/

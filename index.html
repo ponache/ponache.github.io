@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Николай Щекочихин — Продуктовый дизайнер</title>
+  <meta name="description" content="Портфолио продуктового дизайнера: проекты, кейсы, опыт." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <div class="wrap nav">
+      <button class="nav-burger" aria-label="Меню" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none"><path d="M4.5 10C5.60457 10 6.5 10.8954 6.5 12C6.5 13.1046 5.60457 14 4.5 14C3.39543 14 2.5 13.1046 2.5 12C2.5 10.8954 3.39543 10 4.5 10Z" fill="currentColor"/><path d="M12 10C13.1046 10 14 10.8954 14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10Z" fill="currentColor"/><path d="M19.5 10C20.6046 10 21.5 10.8954 21.5 12C21.5 13.1046 20.6046 14 19.5 14C18.3954 14 17.5 13.1046 17.5 12C17.5 10.8954 18.3954 10 19.5 10Z" fill="currentColor"/></svg></button>
+      <a class="brand" href="index.html" data-ru="Николай Щекочихин" data-en="Nikola Schekochikhin">Николай Щекочихин</a>
+      <nav class="nav-links">
+        <a href="index.html" class="active" data-ru="Работы" data-en="Work">Работы</a>
+        <a href="about.html" data-ru="Обо мне" data-en="About">Обо мне</a>
+      </nav>
+      <div class="nav-right">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button data-lang="en" class="active">EN</button>
+          <button data-lang="ru">RU</button>
+        </div>
+        <a class="btn btn-primary" href="#contact" aria-label="Связаться"><span class="cta-label" data-ru="Связаться" data-en="Get in touch">Связаться</span><svg class="cta-ic" viewBox="0 0 24 24" fill="none"><path d="M9.55825 14.3029L15.9202 19.0033C16.6462 19.4038 17.1702 19.1964 17.351 18.3292L19.9407 6.12583C20.2058 5.06284 19.5355 4.58072 18.841 4.89603L3.63455 10.7596C2.59657 11.1759 2.60262 11.755 3.44535 12.013L7.34766 13.231L16.3819 7.53138C16.8084 7.27275 17.1998 7.4118 16.8786 7.69693" fill="currentColor"/></svg></a>
+      </div>
+    </div>
+    <div class="nav-menu">
+      <a href="index.html" data-ru="Работы" data-en="Work">Работы</a>
+      <a href="about.html" data-ru="Обо мне" data-en="About">Обо мне</a>
+      <div class="menu-lang">
+        <span class="menu-lang-label" data-ru="Язык" data-en="Language">Язык</span>
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button data-lang="en" class="active">EN</button>
+          <button data-lang="ru">RU</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ========================= HERO ========================= -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow" data-ru="Продуктовый дизайнер" data-en="Product Designer">Продуктовый дизайнер</div>
+        <h1 class="hero-title display"><span
+            data-ru="Проектирую продукты, в которых " data-en="I design products that feel ">Проектирую продукты, в которых </span><span
+            class="accent" data-ru="всё понятно" data-en="effortless">всё понятно</span></h1>
+      </div>
+    </section>
+
+    <!-- ========================= WORK ========================= -->
+    <section class="section" id="work">
+      <div class="wrap">
+        <p class="work-intro"
+           data-ru="Подборка проектов, над которыми я работал — продукты, интерфейсы и дизайн-системы, доведённые до результата."
+           data-en="A selection of projects I've worked on — products, interfaces and design systems taken all the way to a result.">Подборка проектов, над которыми я работал — продукты, интерфейсы и дизайн-системы, доведённые до результата.</p>
+
+        <!-- Две колонки. Высота плитки: по умолчанию короткая (4:3),
+             класс .tall — высокая (4:5). Всего 2 варианта.
+             Колонки стартуют со смещения: слева — высокая, справа — короткая. -->
+        <div class="feed">
+          <div class="feed-col">
+            <a class="feed-item tall" href="projects/project-template.html">
+              <div class="feed-cover"><div class="ph">Обложка</div></div>
+              <div class="feed-cap"><span class="title">Дизайн-система Эталон</span><span class="cats" data-ru="B2B · Система" data-en="B2B · System">B2B · Система</span></div>
+            </a>
+            <a class="feed-item" href="projects/project-template.html">
+              <div class="feed-cover"><div class="ph">Обложка</div></div>
+              <div class="feed-cap"><span class="title">SaaS Dashboard</span><span class="cats" data-ru="Web · Дашборд" data-en="Web · Dashboard">Web · Дашборд</span></div>
+            </a>
+            <a class="feed-item tall" href="projects/project-template.html">
+              <div class="feed-cover"><div class="ph">Обложка</div></div>
+              <div class="feed-cap"><span class="title">Onboarding Flow</span><span class="cats" data-ru="Mobile · Онбординг" data-en="Mobile · Onboarding">Mobile · Онбординг</span></div>
+            </a>
+          </div>
+          <div class="feed-col">
+            <a class="feed-item" href="projects/project-template.html">
+              <div class="feed-cover"><div class="ph">Обложка</div></div>
+              <div class="feed-cap"><span class="title">Fintech App</span><span class="cats" data-ru="Mobile · UX/UI" data-en="Mobile · UX/UI">Mobile · UX/UI</span></div>
+            </a>
+            <a class="feed-item tall" href="projects/project-template.html">
+              <div class="feed-cover"><div class="ph">Обложка</div></div>
+              <div class="feed-cap"><span class="title">E-commerce Redesign</span><span class="cats" data-ru="Web · Редизайн" data-en="Web · Redesign">Web · Редизайн</span></div>
+            </a>
+            <a class="feed-item" href="projects/project-template.html">
+              <div class="feed-cover"><div class="ph">Обложка</div></div>
+              <div class="feed-cap"><span class="title">Brand Landing</span><span class="cats" data-ru="Web · Лендинг" data-en="Web · Landing">Web · Лендинг</span></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= INFO ROWS ========================= -->
+    <section class="section" id="contact" style="padding-top:0">
+      <div class="wrap">
+
+        <div class="info-row reveal">
+          <div class="info-label" data-ru="Обо мне" data-en="About">Обо мне</div>
+          <div class="info-body">
+            <p data-ru="Продуктовый дизайнер с 6+ годами опыта. Работаю на стыке исследований, UX и визуала — от логики продукта до финального пикселя."
+               data-en="Product designer with 6+ years of experience. I work where research, UX and visuals meet — from product logic to the final pixel.">Продуктовый дизайнер с 6+ годами опыта. Работаю на стыке исследований, UX и визуала — от логики продукта до финального пикселя.</p>
+            <a class="info-link" href="about.html" data-ru="Подробнее" data-en="Read more">Подробнее</a>
+          </div>
+        </div>
+
+        <div class="info-row reveal">
+          <div class="info-label" data-ru="Опыт работы" data-en="Work Experience">Опыт работы</div>
+          <div class="info-body">
+            <div class="info-list">
+              <div class="li"><span data-ru="Senior Product Designer · Компания" data-en="Senior Product Designer · Company">Senior Product Designer · Компания</span><span>2023 — наст.</span></div>
+              <div class="li"><span data-ru="Product Designer · Компания" data-en="Product Designer · Company">Product Designer · Компания</span><span>2021 — 2023</span></div>
+              <div class="li"><span data-ru="UX/UI Designer · Компания" data-en="UX/UI Designer · Company">UX/UI Designer · Компания</span><span>2019 — 2021</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-row reveal">
+          <div class="info-label" data-ru="Награды" data-en="Awards">Награды</div>
+          <div class="info-body">
+            <div class="info-list">
+              <button class="li" data-modal-open="aw-1"><span>Awwwards · Honorable Mention</span><span>2024</span></button>
+              <button class="li" data-modal-open="aw-2"><span>CSS Design Awards</span><span>2023</span></button>
+              <button class="li" data-modal-open="aw-3"><span data-ru="Победитель отраслевой премии" data-en="Industry award winner">Победитель отраслевой премии</span><span>2022</span></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-row reveal">
+          <div class="info-label" data-ru="Контакты" data-en="Contacts">Контакты</div>
+          <div class="info-body">
+            <div class="contacts-row">
+              <a class="info-link" href="mailto:hello@example.com">Email</a>
+              <a class="info-link" href="https://t.me/username" target="_blank" rel="noopener">Telegram</a>
+              <a class="info-link" href="#" target="_blank" rel="noopener">LinkedIn</a>
+              <a class="info-link" href="#" target="_blank" rel="noopener">Behance</a>
+              <a class="info-link" href="cv.pdf" target="_blank" rel="noopener" data-ru="Резюме (PDF)" data-en="Resume (PDF)">Резюме (PDF)</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================= FOOTER ========================= -->
+    <div class="wrap">
+      <div class="legal">
+        <div class="legal-left">
+          <span class="legal-logo">Logo</span>
+          <span>© <span data-year></span> Николай Щекочихин</span>
+        </div>
+        <span data-ru="Сделано с любовью к деталям" data-en="Made with care for detail">Сделано с любовью к деталям</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ========================= MODALS (awards) ========================= -->
+    <div class="modal-overlay" id="aw-1" role="dialog" aria-modal="true">
+      <button class="modal-close" aria-label="Закрыть"><svg viewBox="0 0 24 24" fill="none"><path d="M19 6.39445L13.4043 11.9999L19 17.5859L17.5859 18.9999L12 13.4042L6.39449 18.9999L4.99995 17.5859L10.5761 11.9999L4.99995 6.39445L6.39449 4.99992L12 10.5761L17.5859 4.99992L19 6.39445Z" fill="currentColor"/></svg></button>
+      <div class="modal">
+        <span class="grabber" aria-hidden="true"></span>
+        <div class="eyebrow modal-eyebrow">2024</div>
+        <h2>Awwwards · Honorable Mention</h2>
+        <p data-ru="Здесь — описание проекта, который получил награду: что это был за продукт, какую роль ты в нём играл и за что именно отметили работу."
+           data-en="A description of the awarded project: what the product was, your role in it, and what exactly the work was recognised for.">Здесь — описание проекта, который получил награду: что это был за продукт, какую роль ты в нём играл и за что именно отметили работу.</p>
+        <p data-ru="Можно добавить пару абзацев — про контекст, вызов и результат. Это просто заглушка, заменим на реальный текст."
+           data-en="Add a couple of paragraphs — context, challenge and outcome. Placeholder text for now.">Можно добавить пару абзацев — про контекст, вызов и результат. Это просто заглушка, заменим на реальный текст.</p>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="aw-2" role="dialog" aria-modal="true">
+      <button class="modal-close" aria-label="Закрыть"><svg viewBox="0 0 24 24" fill="none"><path d="M19 6.39445L13.4043 11.9999L19 17.5859L17.5859 18.9999L12 13.4042L6.39449 18.9999L4.99995 17.5859L10.5761 11.9999L4.99995 6.39445L6.39449 4.99992L12 10.5761L17.5859 4.99992L19 6.39445Z" fill="currentColor"/></svg></button>
+      <div class="modal">
+        <span class="grabber" aria-hidden="true"></span>
+        <div class="eyebrow modal-eyebrow">2023</div>
+        <h2>CSS Design Awards</h2>
+        <p data-ru="Описание проекта и за что он получил награду. Заменим на реальный текст."
+           data-en="A description of the project and why it won. We'll replace this with real copy.">Описание проекта и за что он получил награду. Заменим на реальный текст.</p>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="aw-3" role="dialog" aria-modal="true">
+      <button class="modal-close" aria-label="Закрыть"><svg viewBox="0 0 24 24" fill="none"><path d="M19 6.39445L13.4043 11.9999L19 17.5859L17.5859 18.9999L12 13.4042L6.39449 18.9999L4.99995 17.5859L10.5761 11.9999L4.99995 6.39445L6.39449 4.99992L12 10.5761L17.5859 4.99992L19 6.39445Z" fill="currentColor"/></svg></button>
+      <div class="modal">
+        <span class="grabber" aria-hidden="true"></span>
+        <div class="eyebrow modal-eyebrow">2022</div>
+        <h2 data-ru="Победитель отраслевой премии" data-en="Industry award winner">Победитель отраслевой премии</h2>
+        <p data-ru="Описание проекта и награды. Заменим на реальный текст."
+           data-en="A description of the project and the award. We'll replace this with real copy.">Описание проекта и награды. Заменим на реальный текст.</p>
+      </div>
+    </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
