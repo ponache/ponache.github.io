@@ -146,23 +146,50 @@
       // mobile: swipe the sheet down to close
       var sheet = overlay.querySelector(".modal");
       if (!sheet) return;
+      var SPRING = "transform .32s cubic-bezier(.22,.61,.36,1)";
       var startY = 0, dy = 0, dragging = false;
+
+      // clears the inline styles left behind by a drag so the next open is clean
+      function resetSheet() {
+        sheet.style.transition = "";
+        sheet.style.transform = "";
+      }
+
       sheet.addEventListener("touchstart", function (e) {
         if (sheet.scrollTop > 0) return;          // let content scroll first
         dragging = true; startY = e.touches[0].clientY; dy = 0;
-        sheet.style.transition = "none";
+        sheet.style.transition = "none";          // follow the finger 1:1
       }, { passive: true });
+
       sheet.addEventListener("touchmove", function (e) {
         if (!dragging) return;
         dy = e.touches[0].clientY - startY;
-        if (dy > 0) sheet.style.transform = "translateY(" + dy + "px)";
+        sheet.style.transform = dy > 0 ? "translateY(" + dy + "px)" : "";
       }, { passive: true });
+
       sheet.addEventListener("touchend", function () {
         if (!dragging) return;
         dragging = false;
-        sheet.style.transition = "";
-        sheet.style.transform = "";
-        if (dy > 110) close();
+
+        if (dy <= 0) { resetSheet(); return; }    // no downward drag — nothing to animate
+
+        sheet.style.transition = SPRING;
+        if (dy > 110) {
+          // slide fully out, then close once the animation settles
+          sheet.style.transform = "translateY(100%)";
+          sheet.addEventListener("transitionend", function onEnd() {
+            sheet.removeEventListener("transitionend", onEnd);
+            resetSheet();
+            close();
+          });
+        } else {
+          // spring back into place
+          sheet.style.transform = "";
+          sheet.addEventListener("transitionend", function onBack() {
+            sheet.removeEventListener("transitionend", onBack);
+            sheet.style.transition = "";
+          });
+        }
       });
     });
 
