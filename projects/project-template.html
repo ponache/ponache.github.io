@@ -44,72 +44,82 @@
     </section>
 
     <!-- ============================================================
-         КЕЙС — совмещённые плашки (заголовок + текст + место под скрин).
-         Сетка 2 колонки, отступы 24px. Варианты:
-           .span2     — на всю ширину
-           .dark      — тёмная плашка (белый текст)
-           .overlay   — текст поверх фото
-           .media-only — только картинка (обложка)
-         Бабл .tag c-blue/green/orange/purple/pink — цветной лейбл.
-         Когда будут картинки: замени <div class="ph">…</div> на <img src="...">.
+         КЕЙС — плашки. Сетка 2 колонки, отступы 24px.
+
+         ТРИ ТИПА (класс .feature-card + модификатор):
+           .media-only    ТИП 1 · Обложка — только картинка, без текста
+           (базовый)      ТИП 2 · Текст + PNG — текст сверху, PNG снизу на серой плашке
+           .overlay       ТИП 3 · Текст + заливка — картинка на всю плашку, белый текст поверх
+         МОДИФИКАТОРЫ (комбинируются с ЛЮБЫМ типом):
+           .span2         на всю ширину сетки (без него — половина, 1 колонка)
+           .dark          тёмная плашка (для типа 2)
+
+         КАРТИНКИ лежат в projects/<slug>/img/ и именуются:
+           {NN}-{type}[-{mod}...].{ext}
+           NN=порядок (01,02…) · type=cover|png|fill · mod=wide|dark
+           напр.: 01-cover-wide.webp · 02-png.webp · 03-png-dark.webp · 04-fill-wide.webp
+         Плейсхолдер <div class="ph"> заменяется на <img src="img/…" alt="">.
          ============================================================ -->
     <div class="wrap">
       <div class="case-flow">
 
-        <!-- обложка -->
+        <!-- ТИП 1 · Обложка на всю ширину — 01-cover-wide.webp -->
         <div class="feature-card media-only span2 reveal">
           <div class="ft-media"><div class="ph" data-ru="Обложка кейса" data-en="Case cover">Обложка кейса</div></div>
+          <!-- <div class="ft-media"><img src="img/01-cover-wide.webp" alt=""></div> -->
         </div>
 
-        <!-- контекст + анатомия -->
+        <!-- ТИП 2 · Текст + PNG (серая) — 02-png.webp -->
         <div class="feature-card reveal">
           <div class="ft-text">
             <h3 data-ru="Контекст и задача" data-en="Context & problem">Контекст и задача</h3>
             <p data-ru="Что за продукт, какую проблему испытывали пользователи и какую цель поставили."
                data-en="The product, the problem users faced, and the goal you set.">Что за продукт, какую проблему испытывали пользователи и какую цель поставили.</p>
           </div>
-          <div class="ft-media"><div class="ph">Скриншот · контекст</div></div>
+          <div class="ft-media"><div class="ph">PNG · 02-png</div></div>
         </div>
 
-        <div class="feature-card reveal">
+        <!-- ТИП 2 · Текст + PNG, тёмная — 03-png-dark.webp -->
+        <div class="feature-card dark reveal">
           <div class="ft-text">
             <h3 data-ru="Что выяснили" data-en="What we learned">Что выяснили</h3>
             <p data-ru="Интервью, данные, конкуренты — ключевые инсайты, на которых строилось решение."
                data-en="Interviews, data, competitors — the key insights the solution was built on.">Интервью, данные, конкуренты — ключевые инсайты, на которых строилось решение.</p>
           </div>
-          <div class="ft-media"><div class="ph">Скриншот · исследование</div></div>
+          <div class="ft-media"><div class="ph on-dark">PNG · 03-png-dark</div></div>
         </div>
 
-        <!-- крупная плашка: текст поверх фото -->
+        <!-- ТИП 3 · Текст + заливка на всю ширину — 04-fill-wide.webp -->
         <div class="feature-card overlay span2 reveal">
           <div class="ft-text">
             <h3 data-ru="Как шли к решению" data-en="How we got there">Как шли к решению</h3>
             <p data-ru="Ход мысли: гипотезы, скетчи, прототипы, тестирование."
                data-en="The thinking: hypotheses, sketches, prototypes, testing.">Ход мысли: гипотезы, скетчи, прототипы, тестирование.</p>
           </div>
-          <div class="ft-media"><div class="ph on-dark">Крупное фото / флоу</div></div>
+          <div class="ft-media"><div class="ph on-dark">Заливка · 04-fill-wide</div></div>
         </div>
 
-        <!-- тёмная + светлая -->
-        <div class="feature-card dark reveal">
-          <div class="ft-text">
-            <h3 data-ru="Финальное решение" data-en="The solution">Финальное решение</h3>
-            <p data-ru="Ключевые экраны и почему именно так."
-               data-en="The key screens and why it works this way.">Ключевые экраны и почему именно так.</p>
-          </div>
-          <div class="ft-media"><div class="ph on-dark">Скриншот · решение</div></div>
-        </div>
-
+        <!-- ТИП 2 · Текст + PNG (серая) — 05-png.webp -->
         <div class="feature-card reveal">
           <div class="ft-text">
             <h3 data-ru="Внимание к деталям" data-en="Attention to detail">Внимание к деталям</h3>
             <p data-ru="Состояния, микровзаимодействия, граничные случаи."
                data-en="States, micro-interactions, edge cases.">Состояния, микровзаимодействия, граничные случаи.</p>
           </div>
-          <div class="ft-media"><div class="ph">Скриншот · детали</div></div>
+          <div class="ft-media"><div class="ph">PNG · 05-png</div></div>
         </div>
 
-        <!-- результат на всю ширину -->
+        <!-- ТИП 2 · Текст + PNG (серая) — 06-png.webp -->
+        <div class="feature-card reveal">
+          <div class="ft-text">
+            <h3 data-ru="Финальное решение" data-en="The solution">Финальное решение</h3>
+            <p data-ru="Ключевые экраны и почему именно так."
+               data-en="The key screens and why it works this way.">Ключевые экраны и почему именно так.</p>
+          </div>
+          <div class="ft-media"><div class="ph">PNG · 06-png</div></div>
+        </div>
+
+        <!-- ТИП 2 · результат на всю ширину (со списком) — 07-png-wide.webp -->
         <div class="feature-card span2 reveal">
           <div class="ft-text">
             <h3 data-ru="Чем закончилось" data-en="The outcome">Чем закончилось</h3>
@@ -119,7 +129,7 @@
               <li data-ru="Решение легло в основу дизайн-системы" data-en="The solution became the basis of the design system">Решение легло в основу дизайн-системы</li>
             </ul>
           </div>
-          <div class="ft-media"><div class="ph">Скриншот · метрики / итог</div></div>
+          <div class="ft-media"><div class="ph">PNG · 07-png-wide</div></div>
         </div>
 
       </div>
@@ -144,7 +154,7 @@
     <div class="legal">
       <div class="legal-left">
         <span class="legal-logo">Logo</span>
-        <span>© <span data-year></span> Николай Щекочихин</span>
+        <span>© <span data-year></span> <span data-ru="Николай Щекочихин" data-en="Nikolai Shchekochikhin">Николай Щекочихин</span></span>
       </div>
       <a href="../index.html#contact" data-ru="Связаться" data-en="Contact">Связаться</a>
     </div>

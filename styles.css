@@ -44,6 +44,8 @@ body {
 
 img { max-width: 100%; display: block; }
 a   { color: inherit; text-decoration: none; }
+/* убираем задержку тапа (браузер иначе ждёт double-tap ~300мс) */
+a, button { touch-action: manipulation; }
 
 .display { font-weight: 700; letter-spacing: -0.028em; line-height: 1.04; }
 .wrap { max-width: var(--max); margin: 0 auto; padding-inline: var(--gutter); }
@@ -288,44 +290,63 @@ a   { color: inherit; text-decoration: none; }
 .fact-pill.c-purple { background: #efeaff; color: #6248f0; }
 
 /* ============================================================
-   CASE FLOW — combined plates (text + screenshot in one plate),
-   uniform 24px gaps both directions.
+   CASE FLOW — плашки кейса. Три типа, всё через один класс
+   .feature-card + модификаторы. Размеры внутри плашки считаются
+   от ЕЁ ширины (container queries, ед. cqw), а не от экрана —
+   поэтому узкая (1 колонка) и широкая (.span2) плашки, и мобилка,
+   масштабируются сами, без ручных брейкпоинтов.
+
+     базовый  .feature-card            — тип 2: текст + PNG снизу (серая)
+     +.dark                            — то же, тёмная плашка
+     +.overlay                         — тип 3: текст поверх заливки (белый текст)
+     +.media-only                      — тип 1: только картинка (обложка)
+     +.span2                           — на всю ширину сетки
    ============================================================ */
-.case-flow { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--gap); margin-top: var(--gap); }
+.case-flow { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--gap); margin-top: var(--gap); margin-bottom: var(--gap); }
 
 .feature-card {
+  container-type: inline-size;            /* размеры внутри — в cqw (% ширины плашки) */
   position: relative; display: flex; flex-direction: column;
   aspect-ratio: 1 / 1; border-radius: 36px; overflow: hidden;
   background: var(--bg-2); color: var(--ink);
 }
 .feature-card.span2 { grid-column: span 2; aspect-ratio: 2 / 1; }
 
-/* header inside the plate */
-.ft-text { position: relative; z-index: 2; padding: clamp(28px, 3vw, 44px) clamp(28px, 3vw, 44px) clamp(10px, 1.4vw, 18px); }
-.feature-card h3 { font-size: clamp(20px, 2vw, 28px); font-weight: 600; letter-spacing: -0.02em; margin: 0; }
+/* header inside the plate — тянется по ширине самой плашки */
+/* отступы текста фиксированные — одинаковые слева/справа на всех плашках
+   (на широких горизонтальных такие же, как на половинчатых) */
+.ft-text { position: relative; z-index: 2; padding: 32px 32px 16px; }
+/* кегль заголовка/подзаголовка — фиксированный, одинаковый на всех плашках
+   (не зависит от ширины плашки: половина и на всю ширину читаются одинаково) */
+.feature-card h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; margin: 0; }
 .ft-text p { font-size: 16px; line-height: 1.45; color: var(--ink-soft); margin: 0; max-width: 58ch; }
 .ft-text ul { font-size: 16px; color: var(--ink-soft); margin: 10px 0 0; padding-left: 20px; }
 .ft-text ul li { margin-bottom: 6px; }
 
-/* image loads at the bottom, keeps its own aspect, transparent bg sits on the plate */
-.ft-media { position: relative; z-index: 2; flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
-.ft-media img { width: 100%; height: auto; display: block; }
-.ft-media .ph { flex: 1; }
+/* ТИП 2 — текст + PNG: картинка вписана целиком и прижата к низу,
+   прозрачный фон PNG ложится на серую плашку. object-contain не даёт
+   картинке переполнить область, как бы высока она ни была. */
+.ft-media { position: relative; z-index: 2; flex: 1; min-height: 0; overflow: hidden; }
+.ft-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center bottom; }
+.ft-media .ph { position: absolute; inset: 0; }
 
-/* pure-image plate (cover) */
-.feature-card.media-only { aspect-ratio: auto; }
-.feature-card.media-only .ft-media .ph { aspect-ratio: 16 / 9; flex: none; }
+/* ТИП 1 — обложка: только картинка, заполняет плашку целиком.
+   .span2.media-only (0,3,0) перебивает мобильное правило .span2, чтобы
+   высоту задавала картинка, а не aspect-ratio плашки. */
+.feature-card.media-only, .feature-card.span2.media-only { aspect-ratio: auto; }
+.feature-card.media-only .ft-media { flex: none; aspect-ratio: 16 / 9; }
+.feature-card.media-only .ft-media img { object-fit: cover; object-position: center; }
 
-/* dark plate */
+/* тёмная плашка (для типа 2) */
 .feature-card.dark { background: var(--ink); color: #fff; }
 .feature-card.dark .ft-text p { color: rgba(255,255,255,.7); }
 
-/* text over photo (image covers full plate) */
+/* ТИП 3 — текст поверх заливки: картинка = фон и ключевое изображение,
+   белый текст, градиент-скрим снизу для читаемости на ярких картинках */
 .feature-card.overlay { color: #fff; }
 .feature-card.overlay .ft-media { position: absolute; inset: 0; z-index: 0; }
-.feature-card.overlay .ft-media .ph { height: 100%; flex: none; }
-.feature-card.overlay .ft-media img { height: 100%; object-fit: cover; }
-.feature-card.overlay::after { content:""; position: absolute; inset: 0; background: rgba(0,0,0,.32); z-index: 1; }
+.feature-card.overlay .ft-media img { object-fit: cover; object-position: center; }
+.feature-card.overlay::after { content:""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,.12) 42%, rgba(0,0,0,0) 70%); }
 .feature-card.overlay .ft-text p { color: rgba(255,255,255,.9); }
 
 @media (max-width: 760px) {
@@ -340,7 +361,10 @@ a   { color: inherit; text-decoration: none; }
 /* ============================================================
    NEXT PROJECT — small: text left, cover right
    ============================================================ */
-.next { padding: clamp(40px,6vw,72px) 0; }
+/* отступ от последней плашки = как между плашками (margin-bottom у .case-flow);
+   дивайдера сверху нет — только хайрлайн снизу, до краёв экрана */
+.next { position: relative; padding: 0 0 var(--gap); }
+.next::after { content: ""; position: absolute; left: 50%; transform: translateX(-50%); width: 100vw; height: 1px; background: var(--line); bottom: 0; }
 .next a { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 28px; transition: transform var(--t-fast); }
 .next-text .eyebrow { display: block; margin-bottom: 8px; }
 .next-text h2 { font-size: clamp(24px, 3.2vw, 40px); margin: 0; transition: opacity var(--t-fast); }
@@ -350,8 +374,9 @@ a   { color: inherit; text-decoration: none; }
 .next-cover img { width: 100%; display: block; transition: transform var(--t-slow); }
 .next a:hover .next-cover img { transform: scale(1.04); }
 @media (max-width: 560px){
-  .next a { grid-template-columns: 1fr; }
-  .next-cover { width: 100%; }
+  /* картинка остаётся рядом с заголовком, просто мельче */
+  .next a { gap: 16px; }
+  .next-cover { width: clamp(96px, 30vw, 132px); }
 }
 
 /* ============================================================
@@ -414,11 +439,11 @@ a   { color: inherit; text-decoration: none; }
 .signoff { text-align: center; padding: clamp(56px, 8vw, 100px) 0 clamp(32px, 4vw, 48px); }
 .signoff p { font-size: clamp(18px, 2vw, 24px); color: var(--ink-soft); line-height: 1.55; max-width: 46ch; margin: 0 auto; }
 .signoff .logo-slot { margin: clamp(28px, 4vw, 48px) auto 0; width: 80px; height: 80px; border-radius: 20px; background: var(--bg-2); display: flex; align-items: center; justify-content: center; color: var(--ink-faint); font-size: 11px; }
-.legal { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; padding: var(--gutter) 0; color: var(--ink-faint); font-size: 13px; }
+.legal { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; padding: clamp(28px, 4vw, 48px) 0; color: var(--ink-faint); font-size: 13px; }
 .legal a:hover { color: var(--ink); }
-/* footer with a full-width divider above it — top gap matches the contacts padding
-   so the spacing contacts → divider → footer is symmetric */
-.legal--divided { position: relative; padding-top: clamp(28px, 4vw, 44px); }
+/* footer with a full-width divider above it — верхний отступ (дивайдер → лигал)
+   равен нижнему (лигал → низ экрана), т.е. var(--gutter) с обеих сторон */
+.legal--divided { position: relative; padding-top: clamp(28px, 4vw, 48px); }
 .legal--divided::before { content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100vw; height: 1px; background: var(--line); }
 .legal-left { display: flex; align-items: center; gap: 14px; }
 .legal-logo { width: 34px; height: 34px; border-radius: 9px; background: var(--bg-2); display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--ink-faint); }
