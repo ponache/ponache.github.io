@@ -445,7 +445,7 @@ a, button { touch-action: manipulation; }
    равен нижнему (лигал → низ экрана), т.е. var(--gutter) с обеих сторон */
 .legal--divided { position: relative; padding-top: clamp(28px, 4vw, 48px); }
 .legal--divided::before { content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100vw; height: 1px; background: var(--line); }
-.legal-left { display: flex; align-items: center; gap: 14px; }
+.legal-left { display: flex; align-items: center; gap: 8px; }
 /* логотип-знак: SVG уже залит минорным цветом (#86868B = --ink-faint) */
 .legal-logo { width: 34px; height: 34px; display: block; }
 
