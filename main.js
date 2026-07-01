@@ -160,8 +160,10 @@
         sheet.style.transform = "";
       }
 
+      // drag can start anywhere on the sheet; only from the top of its
+      // scroll so a pull-down closes instead of fighting content scroll
       sheet.addEventListener("touchstart", function (e) {
-        if (sheet.scrollTop > 0) return;          // let content scroll first
+        if (sheet.scrollTop > 0) { dragging = false; return; }
         dragging = true; startY = e.touches[0].clientY; dy = 0;
         sheet.style.transition = "none";          // follow the finger 1:1
       }, { passive: true });
@@ -169,8 +171,13 @@
       sheet.addEventListener("touchmove", function (e) {
         if (!dragging) return;
         dy = e.touches[0].clientY - startY;
-        sheet.style.transform = dy > 0 ? "translateY(" + dy + "px)" : "";
-      }, { passive: true });
+        if (dy > 0) {
+          sheet.style.transform = "translateY(" + dy + "px)";
+          if (e.cancelable) e.preventDefault();   // own the gesture — no content/page scroll under it
+        } else {
+          sheet.style.transform = "";
+        }
+      }, { passive: false });
 
       sheet.addEventListener("touchend", function () {
         if (!dragging) return;
@@ -179,7 +186,7 @@
         if (dy <= 0) { resetSheet(); return; }    // no downward drag — nothing to animate
 
         sheet.style.transition = SPRING;
-        if (dy > 110) {
+        if (dy > 90) {
           // slide fully out, then close once the animation settles
           sheet.style.transform = "translateY(100%)";
           sheet.addEventListener("transitionend", function onEnd() {
