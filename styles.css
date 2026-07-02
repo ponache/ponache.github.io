@@ -467,7 +467,7 @@ a, button { touch-action: manipulation; }
    Scroll-reveal
    ============================================================ */
 /* clickable list item (e.g. awards open a modal) */
-.info-list button.li { border: 0; background: transparent; width: 100%; font: inherit; cursor: pointer; text-align: left; color: inherit; transition: color var(--t-fast), opacity var(--t-fast); }
+.info-list button.li { margin: 0; padding: 0; border: 0; background: transparent; width: 100%; font: inherit; cursor: pointer; text-align: left; color: inherit; transition: color var(--t-fast), opacity var(--t-fast); }
 .info-list button.li:hover, .info-list button.li:hover span { color: var(--brand); }
 
 /* ============================================================
