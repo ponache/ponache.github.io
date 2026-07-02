@@ -364,7 +364,7 @@ a, button { touch-action: manipulation; }
 /* отступ от последней плашки = как между плашками (margin-bottom у .case-flow);
    дивайдера сверху нет — только хайрлайн снизу, до краёв экрана */
 .next { position: relative; padding: 0 0 var(--gap); }
-.next::after { content: ""; position: absolute; left: 50%; transform: translateX(-50%); width: 100vw; height: 1px; background: var(--line); bottom: 0; }
+/* линию-разделитель под «Next» не рисуем — её роль берёт дивайдер футера (.legal--divided::before) */
 .next a { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 28px; transition: transform var(--t-fast); }
 .next-text .eyebrow { display: block; margin-bottom: 8px; }
 .next-text h2 { font-size: clamp(24px, 3.2vw, 40px); margin: 0; transition: opacity var(--t-fast); }
