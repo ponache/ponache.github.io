@@ -365,7 +365,7 @@ a, button { touch-action: manipulation; }
      main .next — чтобы перебить десктопное .next ниже по файлу (у него тот же вес, но оно позже) */
   main .next { padding-bottom: var(--gap); }
   .next .wrap { padding-left: 20px; }
-  .next-text .eyebrow { margin-bottom: 0; }
+  main .next-text .eyebrow { margin-bottom: 0; }
 }
 
 /* ============================================================
