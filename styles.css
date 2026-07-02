@@ -449,6 +449,17 @@ a, button { touch-action: manipulation; }
 /* логотип-знак: SVG уже залит минорным цветом (#86868B = --ink-faint) */
 .legal-logo { width: 34px; height: 34px; display: block; }
 
+/* мобилка: вертикаль по центру — копирайт / подпись / знак снизу.
+   .legal-left «распаковываем» через display:contents, порядок задаём order.
+   gap:0 → между строками текста 0px; отступ до знака — margin-top на нём. */
+@media (max-width: 760px) {
+  .legal--divided { flex-direction: column; align-items: center; text-align: center; gap: 0; }
+  .legal--divided .legal-left { display: contents; }
+  .legal--divided .legal-left span { order: 1; }                 /* © … имя */
+  .legal--divided > span           { order: 2; }                 /* «Сделано с любовью к деталям» */
+  .legal--divided .legal-logo      { order: 3; margin-top: 12px; } /* знак — снизу */
+}
+
 /* nav active link */
 .nav-links a.active { color: var(--ink); font-weight: 600; }
 
