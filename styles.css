@@ -302,7 +302,8 @@ a, button { touch-action: manipulation; }
      +.media-only                      — тип 1: только картинка (обложка)
      +.span2                           — на всю ширину сетки
    ============================================================ */
-.case-flow { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--gap); margin-top: var(--gap); margin-bottom: var(--gap); }
+/* margin-bottom = отступ от последней плашки до блока Next (десктоп 80px) */
+.case-flow { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--gap); margin-top: var(--gap); margin-bottom: 80px; }
 
 .feature-card {
   container-type: inline-size;            /* размеры внутри — в cqw (% ширины плашки) */
@@ -351,11 +352,20 @@ a, button { touch-action: manipulation; }
 
 @media (max-width: 760px) {
   /* gap between plates matches the side gutters */
-  .case-flow { grid-template-columns: 1fr; gap: var(--gutter); }
+  .case-flow { grid-template-columns: 1fr; gap: var(--gutter); margin-bottom: var(--gap); }
   .feature-card.span2 { grid-column: auto; aspect-ratio: 4 / 3; }
   /* corner radius matches the project covers on the home feed */
   .feature-card { aspect-ratio: 4 / 5; border-radius: var(--radius); }
   .next-cover { border-radius: var(--radius); }
+
+  /* отступы текста плашки до краёв: слева/справа/сверху 24px (низ до картинки — 16px) */
+  .ft-text { padding: 24px 24px 16px; }
+
+  /* Next project: 24px от обложки до дивайдера футера, 20px слева, заголовок вплотную к надзаголовку.
+     main .next — чтобы перебить десктопное .next ниже по файлу (у него тот же вес, но оно позже) */
+  main .next { padding-bottom: var(--gap); }
+  .next .wrap { padding-left: 20px; }
+  .next-text .eyebrow { margin-bottom: 0; }
 }
 
 /* ============================================================
@@ -363,7 +373,8 @@ a, button { touch-action: manipulation; }
    ============================================================ */
 /* отступ от последней плашки = как между плашками (margin-bottom у .case-flow);
    дивайдера сверху нет — только хайрлайн снизу, до краёв экрана */
-.next { position: relative; padding: 0 0 var(--gap); }
+/* padding-bottom = отступ от обложки Next до дивайдера футера (десктоп 80px) */
+.next { position: relative; padding: 0 0 80px; }
 /* линию-разделитель под «Next» не рисуем — её роль берёт дивайдер футера (.legal--divided::before) */
 .next a { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 28px; transition: transform var(--t-fast); }
 .next-text .eyebrow { display: block; margin-bottom: 8px; }
@@ -407,6 +418,12 @@ a, button { touch-action: manipulation; }
 @media (max-width: 720px) {
   .info-row { grid-template-columns: 1fr; gap: 16px; }
   .info-cols { grid-template-columns: 1fr; }
+}
+/* мобилка (index): отступ от ленты работ до дивайдера блока About = 32px,
+   и от текста «Обо мне» до дивайдера блока Work Experience = 32px */
+@media (max-width: 760px) {
+  #work { padding-bottom: 32px; }
+  .info-row.about-block { padding-bottom: 32px; }
 }
 
 /* ============================================================
@@ -457,7 +474,7 @@ a, button { touch-action: manipulation; }
   .legal--divided .legal-left { display: contents; }
   .legal--divided .legal-left span { order: 1; }                 /* © … имя */
   .legal--divided > span           { order: 2; }                 /* «Сделано с любовью к деталям» */
-  .legal--divided .legal-logo      { order: 3; margin-top: 12px; } /* знак — снизу */
+  .legal--divided .legal-logo      { order: 3; margin-top: 8px; } /* знак — снизу, 8px от подписи */
 }
 
 /* nav active link */
