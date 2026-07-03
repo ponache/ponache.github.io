@@ -2,6 +2,7 @@
    Portfolio — interactions
    - RU/EN language toggle (data-ru / data-en text + data-*-attr)
    - Scroll-reveal, footer year
+   - Footer berry easter egg (squish + juice bits)
    ============================================================ */
 
 (function () {
