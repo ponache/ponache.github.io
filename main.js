@@ -208,6 +208,56 @@
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
   }
 
+  /* ---------- Footer logo easter egg (squish + juice bits) ---------- */
+  // Клик по чернике в футере: она хлопается к центру и пружинисто вырастает
+  // обратно, попутно разбрасывая пару черничных брызг. Тач = тот же click,
+  // так что работает и на десктопе, и на мобилке.
+  function initBerry() {
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    document.querySelectorAll(".legal-logo").forEach(function (logo) {
+      logo.setAttribute("role", "button");
+      logo.setAttribute("tabindex", "0");
+      logo.setAttribute("title", "🫐");
+      logo.draggable = false;
+
+      // раскидываем несколько маленьких кружков из центра логотипа
+      function burst() {
+        var rect = logo.getBoundingClientRect();
+        var cx = rect.left + rect.width / 2;
+        var cy = rect.top + rect.height / 2;
+        var n = 6;
+        for (var i = 0; i < n; i++) {
+          var bit = document.createElement("span");
+          bit.className = "berry-bit";
+          var angle = (Math.PI * 2 * i) / n + (Math.random() - 0.5) * 0.7;
+          var dist = 24 + Math.random() * 22;
+          var size = 4 + Math.random() * 4;
+          bit.style.left = cx + "px";
+          bit.style.top = cy + "px";
+          bit.style.width = bit.style.height = size.toFixed(1) + "px";
+          bit.style.setProperty("--dx", (Math.cos(angle) * dist).toFixed(1) + "px");
+          bit.style.setProperty("--dy", (Math.sin(angle) * dist).toFixed(1) + "px");
+          bit.addEventListener("animationend", function () { this.remove(); });
+          document.body.appendChild(bit);
+        }
+      }
+
+      function squish() {
+        logo.classList.remove("squish");
+        void logo.offsetWidth;               // reflow — чтобы анимация проигралась заново
+        logo.classList.add("squish");
+        if (!reduce) setTimeout(burst, 200);  // брызги — в момент «хлопка» (точка схлопывания)
+      }
+
+      logo.addEventListener("click", squish);
+      logo.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); squish(); }
+      });
+      logo.addEventListener("animationend", function () { logo.classList.remove("squish"); });
+    });
+  }
+
   /* ---------- Footer year ---------- */
   function initYear() {
     document.querySelectorAll("[data-year]").forEach(function (el) {
@@ -222,6 +272,7 @@
     initBurger();
     initPortrait();
     initModal();
+    initBerry();
     initYear();
   });
 })();
