@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Скидки и Рост — Николай Щекочихин</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+  <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png" />
+  <meta name="description" content="Кейс: Скидки и Рост." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../styles.css" />
+</head>
+<body>
+
+  <!-- ============ HEADER (full-width sticky bar, back) ============ -->
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="nav-back" href="../../index.html" aria-label="Назад"><svg viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.8 11L13.4 5.4L12 4L4 12L12 20L13.4 18.6L7.8 13H20V11H7.8Z" fill="currentColor"/></svg></a>
+      <nav class="nav-links">
+        <a href="../../index.html" data-ru="Работы" data-en="Work">Работы</a>
+        <a href="../../about.html" data-ru="Обо мне" data-en="About">Обо мне</a>
+      </nav>
+      <div class="nav-right">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button data-lang="en" class="active">EN</button>
+          <button data-lang="ru">RU</button>
+        </div>
+        <a class="btn btn-primary" href="https://t.me/username" target="_blank" rel="noopener" aria-label="Связаться"><span class="cta-label" data-ru="Связаться" data-en="Contact">Связаться</span><svg class="cta-ic" viewBox="0 0 24 24" fill="none"><path d="M9.55825 14.3029L15.9202 19.0033C16.6462 19.4038 17.1702 19.1964 17.351 18.3292L19.9407 6.12583C20.2058 5.06284 19.5355 4.58072 18.841 4.89603L3.63455 10.7596C2.59657 11.1759 2.60262 11.755 3.44535 12.013L7.34766 13.231L16.3819 7.53138C16.8084 7.27275 17.1998 7.4118 16.8786 7.69693" fill="currentColor"/></svg></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========================= PROJECT HERO ========================= -->
+    <section class="project-hero">
+      <div class="wrap">
+        <div class="eyebrow reveal" data-ru="B2C · Yandex Eats" data-en="B2C · Yandex Eats">B2C · Yandex Eats</div>
+        <h1 class="display reveal" data-ru="Скидки и Рост" data-en="Discounts and Growth">Скидки и Рост</h1>
+        <p class="project-summary reveal"
+           data-ru="Одно-два предложения о сути проекта: какую задачу решали и какого результата достигли."
+           data-en="One or two sentences about the project: the problem you solved and the outcome.">Одно-два предложения о сути проекта: какую задачу решали и какого результата достигли.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         КЕЙС — плашки. Сетка 2 колонки, отступы 24px.
+
+         ТРИ ТИПА (класс .feature-card + модификатор):
+           .media-only    ТИП 1 · Обложка — только картинка, без текста
+           (базовый)      ТИП 2 · Текст + PNG — текст сверху, PNG снизу на серой плашке
+           .overlay       ТИП 3 · Текст + заливка — картинка на всю плашку, белый текст поверх
+         МОДИФИКАТОРЫ (комбинируются с ЛЮБЫМ типом):
+           .span2         на всю ширину сетки (без него — половина, 1 колонка)
+           .dark          тёмная плашка (для типа 2)
+
+         КАРТИНКИ лежат в projects/<slug>/img/ и именуются:
+           {NN}-{type}[-{mod}...].{ext}
+           NN=порядок (01,02…) · type=cover|png|fill · mod=wide|dark
+           напр.: 01-cover-wide.webp · 02-png.webp · 03-png-dark.webp · 04-fill-wide.webp
+         Плейсхолдер <div class="ph"> заменяется на <img src="img/…" alt="">.
+         ============================================================ -->
+    <div class="wrap">
+      <div class="case-flow">
+
+        <!-- ТИП 1 · Обложка на всю ширину — 01-cover-wide.webp -->
+        <div class="feature-card media-only span2 reveal">
+          <div class="ft-media"><div class="ph" data-ru="Обложка кейса" data-en="Case cover">Обложка кейса</div></div>
+          <!-- <div class="ft-media"><img src="img/01-cover-wide.webp" alt=""></div> -->
+        </div>
+
+        <!-- ТИП 2 · Текст + PNG (серая) — 02-png.webp -->
+        <div class="feature-card reveal">
+          <div class="ft-text">
+            <h3 data-ru="Контекст и задача" data-en="Context & problem">Контекст и задача</h3>
+            <p data-ru="Что за продукт, какую проблему испытывали пользователи и какую цель поставили."
+               data-en="The product, the problem users faced, and the goal you set.">Что за продукт, какую проблему испытывали пользователи и какую цель поставили.</p>
+          </div>
+          <div class="ft-media"><div class="ph">PNG · 02-png</div></div>
+        </div>
+
+        <!-- ТИП 2 · Текст + PNG, тёмная — 03-png-dark.webp -->
+        <div class="feature-card dark reveal">
+          <div class="ft-text">
+            <h3 data-ru="Что выяснили" data-en="What we learned">Что выяснили</h3>
+            <p data-ru="Интервью, данные, конкуренты — ключевые инсайты, на которых строилось решение."
+               data-en="Interviews, data, competitors — the key insights the solution was built on.">Интервью, данные, конкуренты — ключевые инсайты, на которых строилось решение.</p>
+          </div>
+          <div class="ft-media"><div class="ph on-dark">PNG · 03-png-dark</div></div>
+        </div>
+
+        <!-- ТИП 3 · Текст + заливка на всю ширину — 04-fill-wide.webp -->
+        <div class="feature-card overlay span2 reveal">
+          <div class="ft-text">
+            <h3 data-ru="Как шли к решению" data-en="How we got there">Как шли к решению</h3>
+            <p data-ru="Ход мысли: гипотезы, скетчи, прототипы, тестирование."
+               data-en="The thinking: hypotheses, sketches, prototypes, testing.">Ход мысли: гипотезы, скетчи, прототипы, тестирование.</p>
+          </div>
+          <div class="ft-media"><div class="ph on-dark">Заливка · 04-fill-wide</div></div>
+        </div>
+
+        <!-- ТИП 2 · Текст + PNG (серая) — 05-png.webp -->
+        <div class="feature-card reveal">
+          <div class="ft-text">
+            <h3 data-ru="Внимание к деталям" data-en="Attention to detail">Внимание к деталям</h3>
+            <p data-ru="Состояния, микровзаимодействия, граничные случаи."
+               data-en="States, micro-interactions, edge cases.">Состояния, микровзаимодействия, граничные случаи.</p>
+          </div>
+          <div class="ft-media"><div class="ph">PNG · 05-png</div></div>
+        </div>
+
+        <!-- ТИП 2 · Текст + PNG (серая) — 06-png.webp -->
+        <div class="feature-card reveal">
+          <div class="ft-text">
+            <h3 data-ru="Финальное решение" data-en="The solution">Финальное решение</h3>
+            <p data-ru="Ключевые экраны и почему именно так."
+               data-en="The key screens and why it works this way.">Ключевые экраны и почему именно так.</p>
+          </div>
+          <div class="ft-media"><div class="ph">PNG · 06-png</div></div>
+        </div>
+
+        <!-- ТИП 2 · результат на всю ширину (со списком) — 07-png-wide.webp -->
+        <div class="feature-card span2 reveal">
+          <div class="ft-text">
+            <h3 data-ru="Чем закончилось" data-en="The outcome">Чем закончилось</h3>
+            <ul>
+              <li data-ru="+ XX% к ключевой метрике" data-en="+ XX% on the key metric">+ XX% к ключевой метрике</li>
+              <li data-ru="Сократили путь пользователя с N до M шагов" data-en="Reduced the user flow from N to M steps">Сократили путь пользователя с N до M шагов</li>
+              <li data-ru="Решение легло в основу дизайн-системы" data-en="The solution became the basis of the design system">Решение легло в основу дизайн-системы</li>
+            </ul>
+          </div>
+          <div class="ft-media"><div class="ph">PNG · 07-png-wide</div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================= NEXT PROJECT (компактно) ========================= -->
+    <section class="next">
+      <div class="wrap reveal">
+        <a href="../order-and-support/index.html">
+          <div class="next-text">
+            <span class="eyebrow" data-ru="Следующий проект" data-en="Next project">Следующий проект</span>
+            <h2 class="display" data-ru="Заказ и Поддержка" data-en="Order and Support">Заказ и Поддержка</h2>
+          </div>
+          <div class="next-cover"><img src="../../assets/covers/OrderAndSupport-4x3.webp" alt="Order and Support" loading="lazy" style="aspect-ratio:16/10;object-fit:cover"></div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="wrap">
+    <div class="legal legal--divided">
+      <div class="legal-left">
+        <svg class="legal-logo" viewBox="0 0 1000 1000" width="34" height="34" role="img" aria-label="Ponache" xmlns="http://www.w3.org/2000/svg"><path d="M339.114 111.918C491.375 48.8656 673.201 79.2308 796.985 203.015C961.005 367.035 961.005 632.964 796.985 796.984C632.964 961.004 367.035 961.004 203.015 796.984C79.2368 673.206 48.8686 491.391 111.909 339.134C122.295 353.049 142.346 368.493 170.668 390.302C173.2 392.251 174.467 393.227 174.774 394.788C174.821 395.027 174.85 395.276 174.863 395.529C174.941 397.183 174.018 399.047 172.165 402.77C136.693 474.069 118.953 509.718 130.881 526.365C132.595 528.757 134.673 530.835 137.065 532.55C153.711 544.479 189.363 526.743 260.663 491.27C264.385 489.418 266.247 488.49 267.901 488.567C268.154 488.579 268.403 488.61 268.643 488.657C270.204 488.964 271.182 490.233 273.132 492.767C310.478 541.267 329.155 565.514 353.462 558.495C356.954 557.487 360.438 556.08 363.838 554.302C387.504 541.924 398.904 505.51 421.703 432.689C422.894 428.887 423.489 426.985 424.836 425.502C425.043 425.274 425.262 425.055 425.49 424.849C426.972 423.503 428.875 422.907 432.676 421.717C505.497 398.917 541.911 387.517 554.289 363.852C556.067 360.452 557.474 356.967 558.483 353.475C565.502 329.167 541.253 310.492 492.753 273.145C490.22 271.195 488.951 270.217 488.644 268.655C488.597 268.416 488.567 268.166 488.555 267.913C488.478 266.26 489.405 264.398 491.256 260.677C526.729 189.376 544.466 153.725 532.536 137.078C530.822 134.686 528.745 132.608 526.353 130.894C509.706 118.966 474.056 136.706 402.758 172.178C399.035 174.03 397.171 174.953 395.517 174.875C395.263 174.863 395.014 174.833 394.775 174.786C393.214 174.479 392.238 173.214 390.288 170.682C368.476 142.355 353.03 122.302 339.114 111.918ZM282.215 282.219C323.22 241.214 378.623 230.133 405.959 257.47C433.296 284.806 422.215 340.208 381.21 381.213C340.205 422.218 284.803 433.298 257.466 405.962C230.13 378.625 241.211 323.224 282.215 282.219ZM269.726 148.654C261.27 168.294 252.851 195.179 241.713 230.754C240.523 234.556 239.928 236.459 238.582 237.941C238.376 238.169 238.156 238.388 237.929 238.595C236.446 239.941 234.543 240.536 230.74 241.727C195.17 252.863 168.287 261.281 148.648 269.736C164.146 246.14 182.268 223.762 203.015 203.015C223.759 182.271 246.134 164.151 269.726 148.654Z" fill="currentColor"/></svg>
+        <span>© <span data-year></span> <span data-ru="Николай Щекочихин" data-en="Nikolai Shchekochikhin">Николай Щекочихин</span></span>
+      </div>
+      <span data-ru="Сделано с любовью к деталям" data-en="Made with care for detail">Сделано с любовью к деталям</span>
+    </div>
+  </div>
+
+  <script src="../../main.js"></script>
+</body>
+</html>

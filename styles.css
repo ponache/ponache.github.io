@@ -180,7 +180,10 @@ a, button { touch-action: manipulation; }
    ============================================================ */
 .feed { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); align-items: start; }
 .feed-col { display: flex; flex-direction: column; gap: var(--gap); }
-@media (max-width: 600px){ .feed { grid-template-columns: 1fr; } }
+/* Мобилка: колонки распускаем в общий поток (display:contents), чтобы
+   карточки шли сквозной последовательностью 1–6 по их inline `order`,
+   а не «сначала левая колонка, потом правая». Десктоп не затрагивается. */
+@media (max-width: 600px){ .feed { grid-template-columns: 1fr; } .feed-col { display: contents; } }
 .feed-item { display: block; transition: transform var(--t-fast); }
 .feed-cover { border-radius: var(--radius); overflow: hidden; background: var(--bg-2); }
 .feed-cover .ph, .feed-cover img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform var(--t-slow); }
