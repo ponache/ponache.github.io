@@ -259,6 +259,21 @@
     });
   }
 
+  /* ---------- Shimmer-плейсхолдер картинок ---------- */
+  // Пока картинка грузится, на её обёртке крутится лёгкий блик (CSS ::before).
+  // Как только <img> загрузилась (или упала) — вешаем .loaded, и блик гаснет.
+  function initShimmer() {
+    var imgs = document.querySelectorAll(
+      ".feed-cover img, .next-cover img, .about-portrait img, .ft-media img, .photo-bento .pb img"
+    );
+    imgs.forEach(function (img) {
+      if (img.complete && img.naturalWidth > 0) { img.classList.add("loaded"); return; }
+      var done = function () { img.classList.add("loaded"); };
+      img.addEventListener("load", done);
+      img.addEventListener("error", done);
+    });
+  }
+
   /* ---------- Footer year ---------- */
   function initYear() {
     document.querySelectorAll("[data-year]").forEach(function (el) {
@@ -274,6 +289,7 @@
     initPortrait();
     initModal();
     initBerry();
+    initShimmer();
     initYear();
   });
 })();
