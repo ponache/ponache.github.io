@@ -27,7 +27,7 @@
 
     document.querySelectorAll("[data-ru][data-en]").forEach(function (el) {
       var next = el.getAttribute("data-" + lang);
-      if (next !== null) el.textContent = next;
+      if (next !== null) { if (el.hasAttribute("data-html")) el.innerHTML = next; else el.textContent = next; }
     });
 
     document.querySelectorAll("*").forEach(function (el) {

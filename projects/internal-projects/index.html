@@ -53,98 +53,129 @@
         <div class="eyebrow reveal" data-ru="B2B · RBC" data-en="B2B · RBC">B2B · RBC</div>
         <h1 class="display reveal" data-ru="Внутренние проекты" data-en="Internal projects">Внутренние проекты</h1>
         <p class="project-summary reveal"
-           data-ru="Внутренние приложения, сервисы и админ-инструменты для сотрудников, а также дизайн-система Waves для продуктов группы РБК. Запускал приложение для управления офисным пространством, редизайн новостного терминала и онбординг продуктовой команды. В составе команды строил структуру Waves — навигацию по Web Kit и App Kit, Asset Kit и Service Kit, библиотеку иконок и цветовую палитру по стандартам контрастности."
-           data-en="Internal apps, services, and admin tools for employees, plus the Waves design system for the RBC group's products. I launched an app for managing office spaces, a redesign of the main news terminal, and onboarding for the product team. As part of the team, I built the structure of Waves — navigation across Web Kit and App Kit, the Asset Kit and Service Kit, an interface icon library, and a color palette meeting contrast standards.">Internal apps, services, and admin tools for employees, plus the Waves design system for the RBC group's products. I launched an app for managing office spaces, a redesign of the main news terminal, and onboarding for the product team. As part of the team, I built the structure of Waves — navigation across Web Kit and App Kit, the Asset Kit and Service Kit, an interface icon library, and a color palette meeting contrast standards.</p>
+           data-ru="Внутренние приложения, сервисы и админ-инструменты для сотрудников, а также дизайн-система Waves для продуктов группы РБК. Запускал приложение для управления офисным пространством, редизайн новостного терминала и онбординг продуктовой команды. В составе команды строил структуру Waves — навигацию по Web Kit и App Kit, Asset Kit и Service Kit, библиотеку иконок и цветовую палитру по стандартам контрастности"
+           data-en="Internal apps, services, and admin tools for employees, plus the Waves design system for the RBC group's products. I launched an app for managing office spaces, a redesign of the main news terminal, and onboarding for the product team. As part of the team, I built the structure of Waves — navigation across Web Kit and App Kit, the Asset Kit and Service Kit, an interface icon library, and a color palette meeting contrast standards">Internal apps, services, and admin tools for employees, plus the Waves design system for the RBC group's products. I launched an app for managing office spaces, a redesign of the main news terminal, and onboarding for the product team. As part of the team, I built the structure of Waves — navigation across Web Kit and App Kit, the Asset Kit and Service Kit, an interface icon library, and a color palette meeting contrast standards</p>
       </div>
     </section>
 
     <!-- ============================================================
-         КЕЙС — плашки. Сетка 2 колонки, отступы 24px.
-
-         ТРИ ТИПА (класс .feature-card + модификатор):
-           .media-only    ТИП 1 · Обложка — только картинка, без текста
-           (базовый)      ТИП 2 · Текст + PNG — текст сверху, PNG снизу на серой плашке
-           .overlay       ТИП 3 · Текст + заливка — картинка на всю плашку, белый текст поверх
-         МОДИФИКАТОРЫ (комбинируются с ЛЮБЫМ типом):
-           .span2         на всю ширину сетки (без него — половина, 1 колонка)
-           .dark          тёмная плашка (для типа 2)
-
-         КАРТИНКИ лежат в projects/<slug>/img/ и именуются:
-           {NN}-{type}[-{mod}...].{ext}
-           NN=порядок (01,02…) · type=cover|png|fill · mod=wide|dark
-           напр.: 01-cover-wide.webp · 02-png.webp · 03-png-dark.webp · 04-fill-wide.webp
-         Плейсхолдер <div class="ph"> заменяется на <img src="img/…" alt="">.
+         КЕЙС — карточки (v2). Одна карточка = опц. текст сверху + одна
+         картинка на сером. Аспект задаёт сама картинка (прозрачный PNG).
+           .ccard        половина ширины
+           +.full        на всю ширину сетки
+           +.fill        без текста — картинка на всю карточку
+           +.dark        тёмная
+         Метрики в тексте — <span class="metric"> (нужен data-html на <p>).
+         Картинки: img/NN-sq.webp | img/NN-16x9.webp
          ============================================================ -->
     <div class="wrap">
       <div class="case-flow">
 
-        <!-- ТИП 1 · Обложка на всю ширину — 01-cover-wide.webp -->
-        <div class="feature-card media-only span2 reveal">
-          <div class="ft-media"><img src="img/01-cover-wide.webp" alt=""></div>
+        <!-- Обложка кейса — 16:9, без текста -->
+        <div class="ccard fill full reveal">
+          <div class="cm"><img src="img/01-cover-wide.webp" alt="" loading="eager"></div>
         </div>
 
-        <!-- ТИП 2 · Текст + PNG (серая) — 02-png.webp -->
-        <div class="feature-card reveal">
-          <div class="ft-text">
-            <h3 data-ru="Контекст и задача" data-en="Context & problem">Контекст и задача</h3>
-            <p data-ru="Что за продукт, какую проблему испытывали пользователи и какую цель поставили."
-               data-en="The product, the problem users faced, and the goal you set.">Что за продукт, какую проблему испытывали пользователи и какую цель поставили.</p>
+        <!-- 02 · RBC News Terminal · вход -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Новостной терминал" data-en="News terminal">News terminal</h3>
+            <p data-html data-ru="РБК ежедневно обрабатывает огромный поток новостей, и редакции нужен инструмент, который держит процесс под контролем. Терминал — рабочее место редактора: поиск, редактирование, публикация и отзыв материалов в одном окне. После редизайна подготовка новостей ускорилась <span class='metric'>в 1,7 раза</span>"
+               data-en="RBC processes an enormous flow of news every day, and the newsroom needs a tool to keep it under control. The terminal is the editor's workspace: searching, editing, publishing, and retracting stories in one window. After the redesign, news preparation became <span class='metric'>1.7× faster</span>">RBC processes an enormous flow of news every day, and the newsroom needs a tool to keep it under control. The terminal is the editor's workspace: searching, editing, publishing, and retracting stories in one window. After the redesign, news preparation became <span class='metric'>1.7× faster</span></p>
           </div>
-          <div class="ft-media"><div class="ph">PNG · 02-png</div></div>
+          <div class="cm"><img src="img/02-sq.webp" alt="" loading="lazy"></div>
         </div>
 
-        <!-- ТИП 2 · Текст + PNG, тёмная — 03-png-dark.webp -->
-        <div class="feature-card dark reveal">
-          <div class="ft-text">
-            <h3 data-ru="Что выяснили" data-en="What we learned">Что выяснили</h3>
-            <p data-ru="Интервью, данные, конкуренты — ключевые инсайты, на которых строилось решение."
-               data-en="Interviews, data, competitors — the key insights the solution was built on.">Интервью, данные, конкуренты — ключевые инсайты, на которых строилось решение.</p>
+        <!-- 03 · Настройка источников / фидов -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Настройка источников" data-en="Source setup">Source setup</h3>
+            <p data-ru="Редактор сам формирует ленту: подключает нужные агентства и сервисы — от Bloomberg до профильных ведомств — и задаёт периодичность обновления. В потоке остаётся только релевантное, без лишнего шума"
+               data-en="The editor shapes their own feed: connecting the right agencies and services — from Bloomberg to government bodies — and setting how often it refreshes. Only what's relevant stays in the stream, without the noise">The editor shapes their own feed: connecting the right agencies and services — from Bloomberg to government bodies — and setting how often it refreshes. Only what's relevant stays in the stream, without the noise</p>
           </div>
-          <div class="ft-media"><div class="ph on-dark">PNG · 03-png-dark</div></div>
+          <div class="cm"><img src="img/03-sq.webp" alt="" loading="lazy"></div>
         </div>
 
-        <!-- ТИП 3 · Текст + заливка на всю ширину — 04-fill-wide.webp -->
-        <div class="feature-card overlay span2 reveal">
-          <div class="ft-text">
-            <h3 data-ru="Как шли к решению" data-en="How we got there">Как шли к решению</h3>
-            <p data-ru="Ход мысли: гипотезы, скетчи, прототипы, тестирование."
-               data-en="The thinking: hypotheses, sketches, prototypes, testing.">Ход мысли: гипотезы, скетчи, прототипы, тестирование.</p>
+        <!-- 04 · Лента новостей · таблица -->
+        <div class="ccard full reveal">
+          <div class="ct">
+            <h3 data-ru="Весь поток на одном экране" data-en="The whole flow on one screen">The whole flow on one screen</h3>
+            <p data-html data-ru="Табличный режим компактно показывает весь входящий поток: агентство, время, заголовок. Редактор быстро ориентируется и забирает нужное в работу — путь от инфоповода до публикации сократился примерно <span class='metric'>на 40%</span>"
+               data-en="The table view lays out the whole incoming flow compactly: agency, time, headline. Editors get their bearings fast and pull the right stories into work — the path from event to publication dropped <span class='metric'>by roughly 40%</span>">The table view lays out the whole incoming flow compactly: agency, time, headline. Editors get their bearings fast and pull the right stories into work — the path from event to publication dropped <span class='metric'>by roughly 40%</span></p>
           </div>
-          <div class="ft-media"><div class="ph on-dark">Заливка · 04-fill-wide</div></div>
+          <div class="cm"><img src="img/04-16x9.webp" alt="" loading="lazy"></div>
         </div>
 
-        <!-- ТИП 2 · Текст + PNG (серая) — 05-png.webp -->
-        <div class="feature-card reveal">
-          <div class="ft-text">
-            <h3 data-ru="Внимание к деталям" data-en="Attention to detail">Внимание к деталям</h3>
-            <p data-ru="Состояния, микровзаимодействия, граничные случаи."
-               data-en="States, micro-interactions, edge cases.">Состояния, микровзаимодействия, граничные случаи.</p>
+        <!-- 05 · Мониторинг фидов · таблица -->
+        <div class="ccard full reveal">
+          <div class="ct">
+            <h3 data-ru="Мониторинг источников" data-en="Source monitoring">Source monitoring</h3>
+            <p data-ru="Источники периодически сбоят, поэтому терминал контролирует их состояние сам. Статусы, ошибки парсинга и свежесть данных видны в реальном времени — проблемный фид заметен до того, как повлияет на ленту"
+               data-en="Sources fail from time to time, so the terminal tracks their health automatically. Statuses, parsing errors, and data freshness are visible in real time — a failing source surfaces before it affects the live feed">Sources fail from time to time, so the terminal tracks their health automatically. Statuses, parsing errors, and data freshness are visible in real time — a failing source surfaces before it affects the live feed</p>
           </div>
-          <div class="ft-media"><div class="ph">PNG · 05-png</div></div>
+          <div class="cm"><img src="img/05-16x9.webp" alt="" loading="lazy"></div>
         </div>
 
-        <!-- ТИП 2 · Текст + PNG (серая) — 06-png.webp -->
-        <div class="feature-card reveal">
-          <div class="ft-text">
-            <h3 data-ru="Финальное решение" data-en="The solution">Финальное решение</h3>
-            <p data-ru="Ключевые экраны и почему именно так."
-               data-en="The key screens and why it works this way.">Ключевые экраны и почему именно так.</p>
+        <!-- 06 · Настройка камер -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Управление переговоркой" data-en="Meeting-room control">Meeting-room control</h3>
+            <p data-ru="В офисе РБК десятки переговорных, и в каждой — планшет для управления техникой зала: камерами, экранами, звуком, климатом. Спроектировал единый интерфейс, заменивший разрозненные пульты одним понятным терминалом, и развернул его на всех переговорных"
+               data-en="The RBC office has dozens of meeting rooms, each with a tablet that controls the room — cameras, screens, sound, climate. I designed a single interface that replaced a scatter of remotes with one clear terminal, rolled out across every room">The RBC office has dozens of meeting rooms, each with a tablet that controls the room — cameras, screens, sound, climate. I designed a single interface that replaced a scatter of remotes with one clear terminal, rolled out across every room</p>
           </div>
-          <div class="ft-media"><div class="ph">PNG · 06-png</div></div>
+          <div class="cm"><img src="img/06-sq.webp" alt="" loading="lazy"></div>
         </div>
 
-        <!-- ТИП 2 · результат на всю ширину (со списком) — 07-png-wide.webp -->
-        <div class="feature-card span2 reveal">
-          <div class="ft-text">
-            <h3 data-ru="Чем закончилось" data-en="The outcome">Чем закончилось</h3>
-            <ul>
-              <li data-ru="+ XX% к ключевой метрике" data-en="+ XX% on the key metric">+ XX% к ключевой метрике</li>
-              <li data-ru="Сократили путь пользователя с N до M шагов" data-en="Reduced the user flow from N to M steps">Сократили путь пользователя с N до M шагов</li>
-              <li data-ru="Решение легло в основу дизайн-системы" data-en="The solution became the basis of the design system">Решение легло в основу дизайн-системы</li>
-            </ul>
+        <!-- 07 · Звук / микрофон / шторы -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Звук, микрофон, шторы" data-en="Sound, mic, blinds">Sound, mic, blinds</h3>
+            <p data-ru="С того же планшета — громкость, микрофон и автоматические шторы. Всё оборудование зала управляется дистанционно, без отдельных пультов"
+               data-en="The same tablet handles volume, microphone, and the automatic blinds. Every device in the room is controlled remotely, with no separate remotes">The same tablet handles volume, microphone, and the automatic blinds. Every device in the room is controlled remotely, with no separate remotes</p>
           </div>
-          <div class="ft-media"><div class="ph">PNG · 07-png-wide</div></div>
+          <div class="cm"><img src="img/07-sq.webp" alt="" loading="lazy"></div>
         </div>
+
+        <!-- 08 · Управление Apple TV · панель -->
+        <div class="ccard full reveal">
+          <div class="ct">
+            <h3 data-ru="Единая панель зала" data-en="One panel for the room">One panel for the room</h3>
+            <p data-ru="Главный экран объединяет всё управление: источники изображения (Apple TV, ноутбуки, Magic Info), телевизор, камеру и климат. Переключение между сценариями встречи — одно касание вместо набора пультов"
+               data-en="The main screen brings all controls together: video sources (Apple TV, laptops, Magic Info), the TV, the camera, and the climate. Switching between meeting setups is a single tap instead of a handful of remotes">The main screen brings all controls together: video sources (Apple TV, laptops, Magic Info), the TV, the camera, and the climate. Switching between meeting setups is a single tap instead of a handful of remotes</p>
+          </div>
+          <div class="cm"><img src="img/08-16x9.webp" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- 09 · Онбординг · подсказка -->
+        <div class="ccard full reveal">
+          <div class="ct">
+            <h3 data-ru="Онбординг по интерфейсу" data-en="Guided onboarding">Guided onboarding</h3>
+            <p data-ru="При первом запуске планшет проводит по интерфейсу короткими подсказками. Даже незнакомый с системой сотрудник быстро разбирается, как управлять залом"
+               data-en="On first launch, the tablet walks you through the interface with short prompts. Even someone new to the system quickly learns to run the room">On first launch, the tablet walks you through the interface with short prompts. Even someone new to the system quickly learns to run the room</p>
+          </div>
+          <div class="cm"><img src="img/09-16x9.webp" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- 10 · Web Kit / App Kit -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Дизайн-система Waves" data-en="The Waves design system">The Waves design system</h3>
+            <p data-html data-ru="Waves — полноценная дизайн-система, подкреплённая кодовой базой. Проектировал продуктовые компоненты Web Kit и App Kit: они закрывают <span class='metric'>около 80%</span> интерфейсных задач и ускоряют сборку макетов примерно <span class='metric'>на треть</span>"
+               data-en="Waves is a full-fledged design system, backed by its own codebase. I designed the Web Kit and App Kit components: they cover <span class='metric'>around 80%</span> of interface needs and cut mockup assembly <span class='metric'>by about a third</span>">Waves is a full-fledged design system, backed by its own codebase. I designed the Web Kit and App Kit components: they cover <span class='metric'>around 80%</span> of interface needs and cut mockup assembly <span class='metric'>by about a third</span></p>
+          </div>
+          <div class="cm"><img src="img/10-sq.webp" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- 11 · Asset Kit / Service Kit -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Графика и иконки" data-en="Graphics and icons">Graphics and icons</h3>
+            <p data-ru="Отвечал за систему графики и иконок: отрисовку, гайды по файлам и пространствам, навигацию между компонентами. Asset Kit и Service Kit объединили ассеты и сервисные элементы в единые библиотеки, а палитру выверили по стандартам контрастности"
+               data-en="I owned the graphics and icon system: the artwork, the file and space guidelines, and the navigation between components. Asset Kit and Service Kit gathered assets and service elements into unified libraries, with a palette tuned to contrast standards">I owned the graphics and icon system: the artwork, the file and space guidelines, and the navigation between components. Asset Kit and Service Kit gathered assets and service elements into unified libraries, with a palette tuned to contrast standards</p>
+          </div>
+          <div class="cm"><img src="img/11-sq.webp" alt="" loading="lazy"></div>
+        </div>
+
 
       </div>
     </div>

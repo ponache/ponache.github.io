@@ -408,6 +408,39 @@ a, button { touch-action: manipulation; }
 }
 
 /* ============================================================
+   CASE CARDS v2 — упрощённая система. Карточка = опц. текст сверху
+   + одна картинка на сером. Аспект карточки задаёт САМА картинка
+   (прозрачный PNG со своим внутренним отступом), поэтому классов
+   аспекта нет.
+     .ccard        половина ширины (текст + картинка)
+     +.full        на всю ширину сетки (span 2)
+     +.fill        без текста — картинка на всю карточку, край в край
+     +.dark        тёмная карточка
+   Картинки: projects/<slug>/img/, имена NN-sq / NN-16x9 (+ -dark).
+   Сетку берём у .case-flow.
+   ============================================================ */
+.ccard {
+  position: relative; display: flex; flex-direction: column;
+  background: var(--bg-2); color: var(--ink);
+  border-radius: 36px; overflow: hidden;
+}
+.ccard.full { grid-column: span 2; }
+.ccard .ct { padding: 32px 32px 8px; }
+.ccard .ct h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; margin: 0; }
+.ccard .ct p { font-size: 16px; line-height: 1.45; color: var(--ink-soft); margin: 8px 0 0; max-width: 58ch; }
+.ccard .cm { position: relative; margin-top: auto; }
+.ccard .cm img { display: block; width: 100%; height: auto; }
+.ccard.dark { background: var(--ink); color: #fff; }
+.ccard.dark .ct p { color: rgba(255,255,255,.7); }
+.metric { color: var(--brand); font-weight: 700; }
+
+@media (max-width: 760px) {
+  .ccard { border-radius: var(--radius); }
+  .ccard.full { grid-column: auto; }
+  .ccard .ct { padding: 24px 24px 8px; }
+}
+
+/* ============================================================
    NEXT PROJECT — small: text left, cover right
    ============================================================ */
 /* отступ от последней плашки = как между плашками (margin-bottom у .case-flow);
