@@ -44,7 +44,12 @@
 
 **Резюме** — `assets/cv/Nikolai-Shchekochikhin-CV.pdf`, ссылка «CV/Резюме» в блоке «Контакты» (index + about), открывается в новой вкладке. Обновление — заменить файл с тем же именем.
 
-_Legacy: старая система `.feature-card` (типы cover/png/fill, `.media-only`/`.overlay`/`.span2`, container-queries) ещё живёт в не-мигрированных кейсах — постепенно заменяется на `.ccard`. Мигрирован пока только `internal-projects`; остальные 5 — на старой системе до наполнения контентом._
+_Legacy: старая система `.feature-card` (типы cover/png/fill, `.media-only`/`.overlay`/`.span2`, container-queries) ещё живёт в не-мигрированных кейсах — постепенно заменяется на `.ccard`. Мигрированы: `internal-projects`, `platform-news`; остальные 4 — на старой системе до наполнения контентом._
+
+## Замок на карточках главной (не опубликованные кейсы)
+Плитки непубликованных проектов на `index.html` **заперты**: у `<a class="feed-item">` убран `href` и добавлен класс `.locked` (+ `aria-disabled`, локализованный `title` «Скоро»/«Coming soon»). Внутри `.feed-cover` лежит `<span class="lock">` с инлайн-SVG замка (`assets/`-исходник — `lockCloseEatsFill.svg`, но в разметке путь `fill:currentColor`, цвет белый). Стили — блок «Locked tiles» в `styles.css`: иконка 36×36 (моб. ≤600px — 24×24), отступ 24px (моб. 16px), hover-зум и press-скейл выключены. Затемнение — `.feed-cover::after`: большой радиальный градиент из левого-верхнего уголка (`circle at top left`, ~210px / моб. 140px), с одинаковой `mask-image` и `backdrop-filter: blur(2px)`, так что затемнение угла и блюр фона плавно угасают к центру. Крутилки: непрозрачность `rgba(0,0,0,.5)`, растекание `70%` в градиенте и маске, матовость `blur(2px)`. Заперты сейчас: `discounts-and-growth`, `order-and-support`, `international-mechanics`, `platform-companies`. Готовы (кликабельны): `platform-news`, `internal-projects`.
+
+**Открыть проект:** вернуть `href="projects/<slug>/index.html"`, снять класс `.locked` и атрибуты `aria-disabled`/`title`/`data-*-title`, удалить `<span class="lock">…`. Запираем **только на главной** — сквозную навигацию `.next` внутри кейсов не трогаем.
 
 ## Модалка наград (index + about)
 - Кнопки `[data-modal-open="aw-1|aw-2|aw-3"]` открывают `.modal-overlay#aw-x`.

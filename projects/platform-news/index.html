@@ -59,91 +59,119 @@
     </section>
 
     <!-- ============================================================
-         КЕЙС — плашки. Сетка 2 колонки, отступы 24px.
-
-         ТРИ ТИПА (класс .feature-card + модификатор):
-           .media-only    ТИП 1 · Обложка — только картинка, без текста
-           (базовый)      ТИП 2 · Текст + PNG — текст сверху, PNG снизу на серой плашке
-           .overlay       ТИП 3 · Текст + заливка — картинка на всю плашку, белый текст поверх
-         МОДИФИКАТОРЫ (комбинируются с ЛЮБЫМ типом):
-           .span2         на всю ширину сетки (без него — половина, 1 колонка)
-           .dark          тёмная плашка (для типа 2)
-
-         КАРТИНКИ лежат в projects/<slug>/img/ и именуются:
-           {NN}-{type}[-{mod}...].{ext}
-           NN=порядок (01,02…) · type=cover|png|fill · mod=wide|dark
-           напр.: 01-cover-wide.webp · 02-png.webp · 03-png-dark.webp · 04-fill-wide.webp
-         Плейсхолдер <div class="ph"> заменяется на <img src="img/…" alt="">.
+         КЕЙС — карточки (v2). Одна карточка = опц. текст сверху + одна
+         картинка на сером. Аспект задаёт сама картинка (прозрачный PNG).
+           .ccard        половина ширины
+           +.full        на всю ширину сетки
+           +.fill        без текста — картинка на всю карточку
+           +.dark        тёмная
+         Метрики в тексте — <span class="metric"> (нужен data-html на <p>).
+         Картинки: img/NN-sq.webp | img/NN-16x9.webp
          ============================================================ -->
     <div class="wrap">
       <div class="case-flow">
 
-        <!-- ТИП 1 · Обложка на всю ширину — 01-cover-wide.webp -->
-        <div class="feature-card media-only span2 reveal">
-          <div class="ft-media"><img src="img/01-cover-wide.webp" alt=""></div>
+        <!-- Обложка кейса — 16:9, без текста -->
+        <div class="ccard fill full reveal">
+          <div class="cm"><img src="img/01-cover-wide.webp" alt="" loading="eager"></div>
         </div>
 
-        <!-- ТИП 2 · Текст + PNG (серая) — 02-png.webp -->
-        <div class="feature-card reveal">
-          <div class="ft-text">
-            <h3 data-ru="Контекст и задача" data-en="Context & problem">Контекст и задача</h3>
-            <p data-ru="Что за продукт, какую проблему испытывали пользователи и какую цель поставили."
-               data-en="The product, the problem users faced, and the goal you set.">Что за продукт, какую проблему испытывали пользователи и какую цель поставили.</p>
+        <!-- ГРУППА 1 · RBC News -->
+
+        <!-- 02 · Лента на мобильном -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Лента новостей" data-en="The news feed">The news feed</h3>
+            <p data-html data-ru="RBC News — сердце продукта: ключевые новости, которые читают каждый день. Пересобрал карточки материалов, мету и сетки под десктоп и мобильную версию, чтобы поток читался легко на любом экране — после переработки глубина просмотра ленты выросла примерно <span class='metric'>на четверть</span>"
+               data-en="RBC News is the heart of the product — the key stories people read every day. I rebuilt the article cards, the meta, and the grids for both desktop and mobile so the flow reads easily on any screen — after the rework, feed read-depth grew <span class='metric'>by about a quarter</span>">RBC News is the heart of the product — the key stories people read every day. I rebuilt the article cards, the meta, and the grids for both desktop and mobile so the flow reads easily on any screen — after the rework, feed read-depth grew <span class='metric'>by about a quarter</span></p>
           </div>
-          <div class="ft-media"><div class="ph">PNG · 02-png</div></div>
+          <div class="cm"><img src="img/02-sq.webp" alt="" loading="lazy"></div>
         </div>
 
-        <!-- ТИП 2 · Текст + PNG, тёмная — 03-png-dark.webp -->
-        <div class="feature-card dark reveal">
-          <div class="ft-text">
-            <h3 data-ru="Что выяснили" data-en="What we learned">Что выяснили</h3>
-            <p data-ru="Интервью, данные, конкуренты — ключевые инсайты, на которых строилось решение."
-               data-en="Interviews, data, competitors — the key insights the solution was built on.">Интервью, данные, конкуренты — ключевые инсайты, на которых строилось решение.</p>
+        <!-- 03 · Календарь событий в ленте -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Календарь событий в ленте" data-en="An events calendar in the feed">An events calendar in the feed</h3>
+            <p data-ru="Внутри ленты появились интерактивные механики — например, календарь праздников и мероприятий. Он живёт прямо в потоке новостей и даёт повод вернуться: видно, что важного впереди, не покидая главную"
+               data-en="Interactive mechanics moved into the feed itself — like a calendar of holidays and events. It lives right in the news stream and gives a reason to come back: you see what's ahead without leaving the homepage">Interactive mechanics moved into the feed itself — like a calendar of holidays and events. It lives right in the news stream and gives a reason to come back: you see what's ahead without leaving the homepage</p>
           </div>
-          <div class="ft-media"><div class="ph on-dark">PNG · 03-png-dark</div></div>
+          <div class="cm"><img src="img/03-sq.webp" alt="" loading="lazy"></div>
         </div>
 
-        <!-- ТИП 3 · Текст + заливка на всю ширину — 04-fill-wide.webp -->
-        <div class="feature-card overlay span2 reveal">
-          <div class="ft-text">
-            <h3 data-ru="Как шли к решению" data-en="How we got there">Как шли к решению</h3>
-            <p data-ru="Ход мысли: гипотезы, скетчи, прототипы, тестирование."
-               data-en="The thinking: hypotheses, sketches, prototypes, testing.">Ход мысли: гипотезы, скетчи, прототипы, тестирование.</p>
+        <!-- 04 · Лента на десктопе + календарь -->
+        <div class="ccard full reveal">
+          <div class="ct">
+            <h3 data-ru="Лента на десктопе" data-en="One feed on desktop">One feed on desktop</h3>
+            <p data-ru="На широком экране лента разворачивается в полноценную витрину: крупные материалы, подборки по интересам и встроенный блок календаря. Реструктуризация сеток и меты помогла показать больше контента без ощущения перегруза"
+               data-en="On a wide screen the feed opens into a full showcase: lead stories, interest-based collections, and a built-in calendar block. Restructuring the grids and meta let us show more content without it feeling crowded">On a wide screen the feed opens into a full showcase: lead stories, interest-based collections, and a built-in calendar block. Restructuring the grids and meta let us show more content without it feeling crowded</p>
           </div>
-          <div class="ft-media"><div class="ph on-dark">Заливка · 04-fill-wide</div></div>
+          <div class="cm"><img src="img/04-16x9.webp" alt="" loading="lazy"></div>
         </div>
 
-        <!-- ТИП 2 · Текст + PNG (серая) — 05-png.webp -->
-        <div class="feature-card reveal">
-          <div class="ft-text">
-            <h3 data-ru="Внимание к деталям" data-en="Attention to detail">Внимание к деталям</h3>
-            <p data-ru="Состояния, микровзаимодействия, граничные случаи."
-               data-en="States, micro-interactions, edge cases.">Состояния, микровзаимодействия, граничные случаи.</p>
+        <!-- ГРУППА 2 · RBC Merch (тёмные) -->
+
+        <!-- 05 · Лендинг мерча RBC -->
+        <div class="ccard full dark reveal">
+          <div class="ct">
+            <h3 data-ru="Лендинг мерча RBC" data-en="The RBC merch landing">The RBC merch landing</h3>
+            <p data-html data-ru="Первый мерч RBC — отдельный промо-запуск. Участвовал в проработке дизайна самой коллекции и собрал продающий лендинг: витрина, факты о вещах и прямые ссылки на маркетплейсы. Первый тираж разобрали примерно <span class='metric'>за три недели</span>"
+               data-en="RBC's first merch was a standalone promo launch. I helped shape the design of the collection itself and built the landing that sells it: a showcase, facts about each item, and direct links to the marketplaces. The first drop sold out <span class='metric'>in about three weeks</span>">RBC's first merch was a standalone promo launch. I helped shape the design of the collection itself and built the landing that sells it: a showcase, facts about each item, and direct links to the marketplaces. The first drop sold out <span class='metric'>in about three weeks</span></p>
           </div>
-          <div class="ft-media"><div class="ph">PNG · 05-png</div></div>
+          <div class="cm"><img src="img/05-16x9.webp" alt="" loading="lazy"></div>
         </div>
 
-        <!-- ТИП 2 · Текст + PNG (серая) — 06-png.webp -->
-        <div class="feature-card reveal">
-          <div class="ft-text">
-            <h3 data-ru="Финальное решение" data-en="The solution">Финальное решение</h3>
-            <p data-ru="Ключевые экраны и почему именно так."
-               data-en="The key screens and why it works this way.">Ключевые экраны и почему именно так.</p>
+        <!-- 06 · Мерч на мобильном -->
+        <div class="ccard dark reveal">
+          <div class="ct">
+            <h3 data-ru="Промо на мобильном" data-en="Promo on mobile">Promo on mobile</h3>
+            <p data-ru="Мобильная версия держит тот же характер — смелый, ироничный, с умом. Крупный оффер, факты о коллекции и понятный путь к покупке умещаются в один экран"
+               data-en="The mobile version keeps the same character — bold, tongue-in-cheek, sharp. The big offer, the collection facts, and a clear path to buy all fit on one screen">The mobile version keeps the same character — bold, tongue-in-cheek, sharp. The big offer, the collection facts, and a clear path to buy all fit on one screen</p>
           </div>
-          <div class="ft-media"><div class="ph">PNG · 06-png</div></div>
+          <div class="cm"><img src="img/06-sq.webp" alt="" loading="lazy"></div>
         </div>
 
-        <!-- ТИП 2 · результат на всю ширину (со списком) — 07-png-wide.webp -->
-        <div class="feature-card span2 reveal">
-          <div class="ft-text">
-            <h3 data-ru="Чем закончилось" data-en="The outcome">Чем закончилось</h3>
-            <ul>
-              <li data-ru="+ XX% к ключевой метрике" data-en="+ XX% on the key metric">+ XX% к ключевой метрике</li>
-              <li data-ru="Сократили путь пользователя с N до M шагов" data-en="Reduced the user flow from N to M steps">Сократили путь пользователя с N до M шагов</li>
-              <li data-ru="Решение легло в основу дизайн-системы" data-en="The solution became the basis of the design system">Решение легло в основу дизайн-системы</li>
-            </ul>
+        <!-- 07 · Витрина коллекции -->
+        <div class="ccard dark reveal">
+          <div class="ct">
+            <h3 data-ru="Витрина коллекции" data-en="The collection showcase">The collection showcase</h3>
+            <p data-ru="Каждая вещь — с ценой, размерами и характером: от худи до свитшотов. Карточки товаров ведут напрямую на Wildberries и Ozon, а сам лендинг мы отправили на конкурс и заняли там призовое место"
+               data-en="Every item comes with a price, sizes, and its own character — from hoodies to sweatshirts. The product cards link straight to Wildberries and Ozon, and the landing itself went to a competition and took a prize there">Every item comes with a price, sizes, and its own character — from hoodies to sweatshirts. The product cards link straight to Wildberries and Ozon, and the landing itself went to a competition and took a prize there</p>
           </div>
-          <div class="ft-media"><div class="ph">PNG · 07-png-wide</div></div>
+          <div class="cm"><img src="img/07-sq.webp" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- ГРУППА 3 · Autonews -->
+
+        <!-- 08 · Билеты ПДД -->
+        <div class="ccard full reveal">
+          <div class="ct">
+            <h3 data-ru="Билеты ПДД в Autonews" data-en="Traffic-rule tickets in Autonews">Traffic-rule tickets in Autonews</h3>
+            <p data-html data-ru="Для Autonews собрал большую механику билетов ПДД: пользователь проходит официальные билеты, тренируется по темам и видит, какие правила изменились. Тесты показывают уровень и разбирают ошибки — как в профильных приложениях, но прямо внутри медиа. За первый месяц механику прошли более <span class='metric'>50 тысяч раз</span>"
+               data-en="For Autonews I built a full traffic-rules ticket mechanic: users work through the official tickets, practice by topic, and see which rules have changed. Tests show your level and break down mistakes — like a dedicated app, but right inside the media. In the first month the mechanic was completed over <span class='metric'>50 thousand times</span>">For Autonews I built a full traffic-rules ticket mechanic: users work through the official tickets, practice by topic, and see which rules have changed. Tests show your level and break down mistakes — like a dedicated app, but right inside the media. In the first month the mechanic was completed over <span class='metric'>50 thousand times</span></p>
+          </div>
+          <div class="cm"><img src="img/08-16x9.webp" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- ГРУППА 4 · Календарь праздников (RBC Life) -->
+
+        <!-- 09 · Календарь праздников на мобильном -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Календарь праздников Life" data-en="The Life holiday calendar">The Life holiday calendar</h3>
+            <p data-html data-ru="Все государственные праздники и памятные даты — на одной странице. Пользователь заранее видит, когда официальные выходные, а когда просто повод: от больших праздников до малоизвестных дат, аккуратно размеченных по типам. Всего собрали более <span class='metric'>300 праздников</span> в одном календаре"
+               data-en="Every public holiday and notable date on a single page. You see in advance when the official days off fall and when it's just an occasion — from major holidays to little-known dates, neatly tagged by type. We gathered over <span class='metric'>300 holidays</span> into one calendar">Every public holiday and notable date on a single page. You see in advance when the official days off fall and when it's just an occasion — from major holidays to little-known dates, neatly tagged by type. We gathered over <span class='metric'>300 holidays</span> into one calendar</p>
+          </div>
+          <div class="cm"><img src="img/09-sq.webp" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- 10 · Год целиком -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Год целиком" data-en="The whole year at a glance">The whole year at a glance</h3>
+            <p data-ru="На десктопе календарь разворачивается в годовую сетку: сразу виден весь год, месяц за месяцем. Внутри RBC Life это часть ключевого новостного продукта — и один из поводов заходить регулярно"
+               data-en="On desktop the calendar opens into a year grid: the whole year at once, month by month. Within RBC Life it's part of the core news product — and one more reason to come back regularly">On desktop the calendar opens into a year grid: the whole year at once, month by month. Within RBC Life it's part of the core news product — and one more reason to come back regularly</p>
+          </div>
+          <div class="cm"><img src="img/10-sq.webp" alt="" loading="lazy"></div>
         </div>
 
       </div>
