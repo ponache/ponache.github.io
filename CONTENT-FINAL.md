@@ -21,18 +21,36 @@
 
 ### Полная версия (about.html, 2 абзаца)
 
+> **Версия 2 (внедрено).** Акцент смещён с образования на зоны ответственности и агрегированные метрики. Прежняя био-версия — в истории git.
+
 **RU**
-- Абзац 1: `Я пришёл в дизайн из инженерии. Учился в МГТУ им. Баумана на биомедицинской технике, а параллельно делал айдентику, мерч и материалы для университета — и со временем понял, что дизайн увлекает меня сильнее всего. Инженерная привычка осталась: люблю разбирать сложное на понятные части и собирать из них систему, которая работает.`
-- Абзац 2: `Больше пяти лет проектирую цифровые продукты. Начинал с коммуникационного дизайна и перешёл в продуктовый: сейчас — Senior Product Designer в Яндекс Еде, до этого два года в РБК, где вместе с командой собрал дизайн-систему на десяток продуктов группы. Мне одинаково близки системная работа — гайдлайны, UI-киты, библиотеки компонентов — и живой продуктовый UX. А разницу между «работает» и «работает хорошо» всегда делают детали.`
+⚠️ **Тон:** без двоеточий и тире внутри предложений, короткие законченные фразы.
+
+- Абзац 1: `Я пришёл в дизайн из инженерии. Учился в МГТУ им. Баумана и параллельно делал айдентику и материалы для университета. Инженерная привычка никуда не делась. Я люблю разбирать сложное на части и собирать из них систему, которая работает. Больше шести лет проектирую цифровые продукты: три последних года в Яндекс Еде, где отвечаю за стрим цикла заказа и механики роста. В моей зоне ответственности скидки и промо, корзина, способы оплаты, чекаут, адреса и трекинг. За это время я довёл до прода больше сорока A/B-экспериментов, которые суммарно дали около +5% GMV, +6% заказов и +2% к марже. А чаевые на чекауте выросли на 80% и приносят курьерам порядка 50 млн рублей в год.`
+- Абзац 2: `Второй большой зоной стали международные механики: больше десяти стран, где привычные решения ломаются о локальный контекст. Я полностью пересобрал работу с адресами, от ввода до передачи курьеру, и отмены упали от 10 до 50% в зависимости от рынка. До Еды были два года в РБК, там я вёл РБК Новости и РБК Компании и вместе с командой собрал дизайн-систему Waves на десяток продуктов группы. Мне одинаково близки системная работа и живой продуктовый UX. А разницу между «работает» и «работает хорошо» всегда делают детали.`
 
 **EN**
-- Para 1: `I came into design from engineering. I studied biomedical engineering at Bauman Moscow State Technical University, and alongside my studies I made branding, merch and materials for the university — over time I realised design was what drew me most. The engineer's habit stayed with me: I like breaking complex things into clear parts and assembling them into a system that works.`
-- Para 2: `I've been designing digital products for over five years. I started in communication design and moved into product: today I'm a Senior Product Designer at Yandex Eats, and before that I spent two years at RBC, where together with the team I built a design system spanning a dozen of the group's products. I'm equally drawn to systematic work — guidelines, UI kits, component libraries — and to living product UX. And the difference between something that works and something that works well always comes down to the details.`
+- Para 1: `I came into design from engineering. I studied at Bauman Moscow State Technical University and made branding and materials for the university on the side. The engineer's habit never left me. I like breaking complex things into parts and assembling a system that works. I've been designing digital products for over six years: the last three at Yandex Eats, where I own the order-cycle stream and growth mechanics. My scope covers discounts and promos, the cart, payment methods, checkout, addresses and tracking. I've shipped more than forty A/B experiments to production, and together they delivered around +5% GMV, +6% orders and +2% margin. Tipping at checkout grew by 80% and now brings couriers roughly ₽50M a year.`
+- Para 2: `My second big area became international mechanics: over ten markets where familiar solutions break against local context. I rebuilt how addresses work across the product, from input all the way to handoff to the courier, and cancellations dropped by 10 to 50% depending on the market. Before Eats I spent two years at RBC, leading RBC News and RBC Companies and building the Waves design system with the team, one library across a dozen of the group's products. I'm equally drawn to systematic work and to living product UX. And the difference between something that works and something that works well always comes down to the details.`
 
 ### Короткая версия (info-строка «Обо мне» на index.html)
 
-**RU**: `Продуктовый дизайнер с инженерным бэкграундом. Сейчас — Senior Product Designer в Яндекс Еде, раньше — продукт и коммуникации в РБК. Люблю системную работу и детали.`
-**EN**: `A product designer with an engineering background. Currently a Senior Product Designer at Yandex Eats; previously product & communication design at RBC. I love systematic work and the details.`
+**RU**: `Продуктовый дизайнер с инженерным бэкграундом. Три года в Яндекс Еде отвечаю за стрим цикла заказа и механики роста, от скидок и корзины до оплат, чекаута и трекинга. Больше сорока A/B-экспериментов дали суммарно +5% GMV и +6% заказов. До этого были РБК Новости, РБК Компании и дизайн-система на десяток продуктов группы.`
+**EN**: `A product designer with an engineering background. Three years at Yandex Eats owning the order-cycle stream and growth mechanics, from discounts and the cart to payments, checkout and tracking. More than forty A/B experiments delivered +5% GMV and +6% orders in total. Before that came RBC News, RBC Companies and a dozen-product design system.`
+
+### Агрегированные метрики (источник для текстов, резюме, LinkedIn)
+
+| Зона | Агрегат |
+|------|---------|
+| Эксперименты | 40+ A/B-экспериментов в проде за 3 года в Яндекс Еде |
+| GMV / заказы | ~+5% GMV, ~+6% заказов кумулятивно |
+| Маржинальность | +2% GM / CM2 |
+| Надёжность оплат | −5% ошибок оплат по картам |
+| Чаевые курьерам | +80% заказов с чаевыми, ~50 млн ₽ в год курьерам |
+| Международка (10+ стран) | Отмены −10…−50% в зависимости от рынка, двузначный прирост заказов новичков на новых рынках |
+| РБК | РБК Новости, РБК Компании, дизайн-система Waves на 10+ продуктов группы |
+
+⚠️ Метрики по РБК в цифрах пока не подтверждены — в тексте намеренно только качественные формулировки.
 
 ---
 
@@ -104,8 +122,9 @@
 
 - **Eyebrow:** RU `Senior Product Designer` / EN `Senior Product Designer`
 - **H1 (2 части, вторая — акцент фиолетовым `--brand`):**
-  - RU: `Инженер, который выбрал ` + акцент `продуктовый дизайн`
-  - EN: `An engineer who chose ` + акцент `product design`
+  - RU: `Системный дизайн с ` + акцент `видимым результатом`
+  - EN: `Systematic design with ` + акцент `measurable outcomes`
+  - _(было: «Инженер, который выбрал продуктовый дизайн» — заменено, инженерный бэкграунд ушёл в первый абзац About)_
 - **Интро над лентой:** RU `Несколько кейсов, где системный подход встретился с вниманием к деталям` / EN `A few cases where a systematic approach met an eye for detail` ✅
 
 ---
