@@ -122,7 +122,7 @@
 
 - **Eyebrow:** RU `Senior Product Designer` / EN `Senior Product Designer`
 - **H1 (2 части, вторая — акцент фиолетовым `--brand`):**
-  - RU: `Системный дизайн с ` + акцент `видимым результатом`
+  - RU: `Системный дизайн, ` + акцент `основанный на данных`
   - EN: `Systematic design with ` + акцент `measurable outcomes`
   - _(было: «Инженер, который выбрал продуктовый дизайн» — заменено, инженерный бэкграунд ушёл в первый абзац About)_
 - **Интро над лентой:** RU `Несколько кейсов, где системный подход встретился с вниманием к деталям` / EN `A few cases where a systematic approach met an eye for detail` ✅
