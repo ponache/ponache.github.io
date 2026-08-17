@@ -59,91 +59,151 @@
     </section>
 
     <!-- ============================================================
-         КЕЙС — плашки. Сетка 2 колонки, отступы 24px.
-
-         ТРИ ТИПА (класс .feature-card + модификатор):
-           .media-only    ТИП 1 · Обложка — только картинка, без текста
-           (базовый)      ТИП 2 · Текст + PNG — текст сверху, PNG снизу на серой плашке
-           .overlay       ТИП 3 · Текст + заливка — картинка на всю плашку, белый текст поверх
-         МОДИФИКАТОРЫ (комбинируются с ЛЮБЫМ типом):
-           .span2         на всю ширину сетки (без него — половина, 1 колонка)
-           .dark          тёмная плашка (для типа 2)
-
-         КАРТИНКИ лежат в projects/<slug>/img/ и именуются:
-           {NN}-{type}[-{mod}...].{ext}
-           NN=порядок (01,02…) · type=cover|png|fill · mod=wide|dark
-           напр.: 01-cover-wide.webp · 02-png.webp · 03-png-dark.webp · 04-fill-wide.webp
-         Плейсхолдер <div class="ph"> заменяется на <img src="img/…" alt="">.
+         КЕЙС — карточки (v2). Одна карточка = опц. текст сверху + одна
+         картинка на сером. Аспект задаёт сама картинка (прозрачный PNG).
+           .ccard        половина ширины
+           +.full        на всю ширину сетки
+           +.fill        без текста — картинка на всю карточку
+           +.dark        тёмная
+         Метрики в тексте — <span class="metric"> (нужен data-html на <p>).
+         Картинки: img/NN-sq.webp | img/NN-16x9.webp
          ============================================================ -->
     <div class="wrap">
       <div class="case-flow">
 
-        <!-- ТИП 1 · Обложка на всю ширину — 01-cover-wide.webp -->
-        <div class="feature-card media-only span2 reveal">
-          <div class="ft-media"><img src="img/01-cover-wide.webp" width="4000" height="2250" alt=""></div>
+        <!-- Обложка кейса — 16:9, без текста -->
+        <div class="ccard fill full reveal">
+          <div class="cm"><img src="img/01-cover-wide.webp" width="4000" height="2250" alt="" loading="eager"></div>
         </div>
 
-        <!-- ТИП 2 · Текст + PNG (серая) — 02-png.webp -->
-        <div class="feature-card reveal">
-          <div class="ft-text">
-            <h3 data-ru="Контекст и задача" data-en="Context & problem">Контекст и задача</h3>
-            <p data-ru="Что за продукт, какую проблему испытывали пользователи и какую цель поставили."
-               data-en="The product, the problem users faced, and the goal you set.">Что за продукт, какую проблему испытывали пользователи и какую цель поставили.</p>
+        <!-- ГРУППА 1 · Профиль компании -->
+
+        <!-- 02 · Публичная страница компании (десктоп) -->
+        <div class="ccard full reveal">
+          <div class="ct">
+            <h3 data-ru="Публичная страница компании" data-en="The company's public page">The company's public page</h3>
+            <p data-ru="Профиль — это витрина бизнеса на РБК. Реквизиты и юридические данные, описание, товары и услуги, отзывы, торговые марки и лента собственных публикаций. Компания рассказывает о себе один раз, а дальше страница работает на неё в поиске и в общей ленте РБК"
+               data-en="The profile is a business's storefront on RBC. Legal details, a description, products and services, reviews, trademarks, and a feed of the company's own publications. A company tells its story once, and from then on the page works for it in search and in the wider RBC feed">The profile is a business's storefront on RBC. Legal details, a description, products and services, reviews, trademarks, and a feed of the company's own publications. A company tells its story once, and from then on the page works for it in search and in the wider RBC feed</p>
           </div>
-          <div class="ft-media"><div class="ph">PNG · 02-png</div></div>
+          <div class="cm"><img src="img/02-16x9.webp" width="4978" height="2800" alt="" loading="lazy"></div>
         </div>
 
-        <!-- ТИП 2 · Текст + PNG, тёмная — 03-png-dark.webp -->
-        <div class="feature-card dark reveal">
-          <div class="ft-text">
-            <h3 data-ru="Что выяснили" data-en="What we learned">Что выяснили</h3>
-            <p data-ru="Интервью, данные, конкуренты — ключевые инсайты, на которых строилось решение."
-               data-en="Interviews, data, competitors — the key insights the solution was built on.">Интервью, данные, конкуренты — ключевые инсайты, на которых строилось решение.</p>
+        <!-- 03 · Профиль на мобильном -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Тот же профиль в приложении" data-en="The same profile in the app">The same profile in the app</h3>
+            <p data-ru="Всё проектировалось сразу под десктоп и мобильное приложение. На узком экране профиль сворачивается в стек: шапка с верификацией, ключевое действие, дальше табы с новостями, отзывами и услугами. Ничего из десктопной версии не потерялось"
+               data-en="Everything was designed for desktop and the mobile app at once. On a narrow screen the profile collapses into a stack: a header with verification, the key action, then tabs for news, reviews, and services. Nothing from the desktop version got lost">Everything was designed for desktop and the mobile app at once. On a narrow screen the profile collapses into a stack: a header with verification, the key action, then tabs for news, reviews, and services. Nothing from the desktop version got lost</p>
           </div>
-          <div class="ft-media"><div class="ph on-dark">PNG · 03-png-dark</div></div>
+          <div class="cm"><img src="img/03-sq.webp" width="2800" height="2800" alt="" loading="lazy"></div>
         </div>
 
-        <!-- ТИП 3 · Текст + заливка на всю ширину — 04-fill-wide.webp -->
-        <div class="feature-card overlay span2 reveal">
-          <div class="ft-text">
-            <h3 data-ru="Как шли к решению" data-en="How we got there">Как шли к решению</h3>
-            <p data-ru="Ход мысли: гипотезы, скетчи, прототипы, тестирование."
-               data-en="The thinking: hypotheses, sketches, prototypes, testing.">Ход мысли: гипотезы, скетчи, прототипы, тестирование.</p>
+        <!-- 04 · Публикация с автором-экспертом -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Автор у каждой публикации" data-en="An author on every publication">An author on every publication</h3>
+            <p data-ru="Каждый материал подписан экспертом и компанией, к которой он прикреплён. Читатель видит, кто это сказал и какую позицию человек занимает, а компания получает лицо вместо безымянного пресс-релиза"
+               data-en="Every piece is signed by an expert and the company they're attached to. Readers see who said it and what position the person holds, and the company gets a face instead of an anonymous press release">Every piece is signed by an expert and the company they're attached to. Readers see who said it and what position the person holds, and the company gets a face instead of an anonymous press release</p>
           </div>
-          <div class="ft-media"><div class="ph on-dark">Заливка · 04-fill-wide</div></div>
+          <div class="cm"><img src="img/04-sq.webp" width="2800" height="2800" alt="" loading="lazy"></div>
         </div>
 
-        <!-- ТИП 2 · Текст + PNG (серая) — 05-png.webp -->
-        <div class="feature-card reveal">
-          <div class="ft-text">
-            <h3 data-ru="Внимание к деталям" data-en="Attention to detail">Внимание к деталям</h3>
-            <p data-ru="Состояния, микровзаимодействия, граничные случаи."
-               data-en="States, micro-interactions, edge cases.">Состояния, микровзаимодействия, граничные случаи.</p>
+        <!-- ГРУППА 2 · Эксперты и лента -->
+
+        <!-- 05 · Страница эксперта -->
+        <div class="ccard full reveal">
+          <div class="ct">
+            <h3 data-ru="Профили экспертов" data-en="Expert profiles">Expert profiles</h3>
+            <p data-ru="У экспертов появились свои страницы: должность, компания, биография и все публикации в одном месте. Внутри одной компании их может быть несколько, каждый пишет от своего лица — колонки, интервью, экспертные мнения. Рядом всегда лежит короткая инструкция, как стать экспертом и что для этого нужно"
+               data-en="Experts got pages of their own: title, company, bio, and all their publications in one place. A single company can have several, and each writes in their own name — columns, interviews, expert opinions. Alongside it there's always a short guide on how to become an expert and what that takes">Experts got pages of their own: title, company, bio, and all their publications in one place. A single company can have several, and each writes in their own name — columns, interviews, expert opinions. Alongside it there's always a short guide on how to become an expert and what that takes</p>
           </div>
-          <div class="ft-media"><div class="ph">PNG · 05-png</div></div>
+          <div class="cm"><img src="img/05-16x9.webp" width="4978" height="2800" alt="" loading="lazy"></div>
         </div>
 
-        <!-- ТИП 2 · Текст + PNG (серая) — 06-png.webp -->
-        <div class="feature-card reveal">
-          <div class="ft-text">
-            <h3 data-ru="Финальное решение" data-en="The solution">Финальное решение</h3>
-            <p data-ru="Ключевые экраны и почему именно так."
-               data-en="The key screens and why it works this way.">Ключевые экраны и почему именно так.</p>
+        <!-- 06 · Лента РБК Компаний -->
+        <div class="ccard full reveal">
+          <div class="ct">
+            <h3 data-ru="Собственная лента продукта" data-en="A feed of its own">A feed of its own</h3>
+            <p data-ru="Публикации компаний не растворяются в общем потоке РБК, у них своя лента. Спроектировал сетку, карточки и мету: автор, компания, рубрика, дата, тип материала. Отдельными полками — интервью, экспертные мнения и кейсы, чтобы за трендами можно было следить по типу контента, а не только по дате"
+               data-en="Company publications don't dissolve into RBC's general stream — they have their own feed. I designed the grid, the cards, and the meta: author, company, section, date, content type. Interviews, expert opinions, and case studies each got their own shelf, so you can follow trends by type of content, not just by date">Company publications don't dissolve into RBC's general stream — they have their own feed. I designed the grid, the cards, and the meta: author, company, section, date, content type. Interviews, expert opinions, and case studies each got their own shelf, so you can follow trends by type of content, not just by date</p>
           </div>
-          <div class="ft-media"><div class="ph">PNG · 06-png</div></div>
+          <div class="cm"><img src="img/06-16x9.webp" width="4978" height="2800" alt="" loading="lazy"></div>
         </div>
 
-        <!-- ТИП 2 · результат на всю ширину (со списком) — 07-png-wide.webp -->
-        <div class="feature-card span2 reveal">
-          <div class="ft-text">
-            <h3 data-ru="Чем закончилось" data-en="The outcome">Чем закончилось</h3>
-            <ul>
-              <li data-ru="+ XX% к ключевой метрике" data-en="+ XX% on the key metric">+ XX% к ключевой метрике</li>
-              <li data-ru="Сократили путь пользователя с N до M шагов" data-en="Reduced the user flow from N to M steps">Сократили путь пользователя с N до M шагов</li>
-              <li data-ru="Решение легло в основу дизайн-системы" data-en="The solution became the basis of the design system">Решение легло в основу дизайн-системы</li>
-            </ul>
+        <!-- ГРУППА 3 · Мероприятия (тёмные) -->
+
+        <!-- 07 · Мероприятия на десктопе -->
+        <div class="ccard full dark reveal">
+          <div class="ct">
+            <h3 data-ru="Раздел мероприятий" data-en="The events section">The events section</h3>
+            <p data-ru="Отдельный раздел для событий компаний и экспертов — от образовательных до отраслевых. Фильтры по городу, категории и формату, переключатель онлайна и архива прошедших событий. Из карточки можно записаться и прийти или посмотреть трансляцию"
+               data-en="A separate section for events run by companies and their experts — from educational to industry-wide. Filters by city, category, and format, plus toggles for online and for past events. From a card you can sign up and attend, or watch the stream">A separate section for events run by companies and their experts — from educational to industry-wide. Filters by city, category, and format, plus toggles for online and for past events. From a card you can sign up and attend, or watch the stream</p>
           </div>
-          <div class="ft-media"><div class="ph">PNG · 07-png-wide</div></div>
+          <div class="cm"><img src="img/07-16x9.webp" width="4978" height="2800" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- 08 · Мероприятия на мобильном -->
+        <div class="ccard dark reveal">
+          <div class="ct">
+            <h3 data-ru="Мероприятия в приложении" data-en="Events in the app">Events in the app</h3>
+            <p data-ru="На мобильном фильтры сворачиваются в компактную строку и открываются шитом. Логика та же, что на десктопе, но выбрать город и формат можно одной рукой"
+               data-en="On mobile the filters collapse into a compact row and open as a sheet. The logic is the same as on desktop, but picking a city and a format works one-handed">On mobile the filters collapse into a compact row and open as a sheet. The logic is the same as on desktop, but picking a city and a format works one-handed</p>
+          </div>
+          <div class="cm"><img src="img/08-sq.webp" width="2800" height="2800" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- ГРУППА 4 · Кабинет: публикации и тарифы -->
+
+        <!-- 09 · Публикации в кабинете (мобильный) -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Публикации в кабинете" data-en="Publications in the account">Publications in the account</h3>
+            <p data-html data-ru="Личный кабинет — рабочее место компании. Здесь заводят материал, ведут черновики и отправляют на модерацию, а статус проверки виден прямо в списке. Лимит новостей по тарифу показан прямо в потоке, поэтому апгрейд предлагается там, где он нужен, а не в отдельном разделе. Число платных подписок выросло <span class='metric'>в 1.5 раза</span>"
+               data-en="The personal account is the company's workspace. This is where a piece is created, kept as a draft, and sent for moderation, with its review status visible right in the list. The tariff's news limit sits inside the flow, so the upgrade is offered where it's needed rather than in a separate section. Paid subscriptions grew <span class='metric'>by 1.5&times;</span>">The personal account is the company's workspace. This is where a piece is created, kept as a draft, and sent for moderation, with its review status visible right in the list. The tariff's news limit sits inside the flow, so the upgrade is offered where it's needed rather than in a separate section. Paid subscriptions grew <span class="metric">by 1.5&times;</span></p>
+          </div>
+          <div class="cm"><img src="img/09-sq.webp" width="2800" height="2800" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- 10 · Тарифы и дополнительные услуги -->
+        <div class="ccard full reveal">
+          <div class="ct">
+            <h3 data-ru="Тарифы и дополнительные услуги" data-en="Tariffs and add-on services">Tariffs and add-on services</h3>
+            <p data-html data-ru="Тариф определяет, сколько новостей доступно компании и какие форматы можно подключить: публикация на главной РБК, помощь редактора, размещение на главной странице новостей. У каждой услуги свой охват и своя цена, всё собирается как конструктор перед отправкой материала. За четыре месяца после запуска выручка направления выросла <span class='metric'>на 380%</span>"
+               data-en="The tariff sets how many news pieces a company gets and which formats it can add: publication on the RBC homepage, editor assistance, placement on the main news page. Each service has its own reach and price, and it all assembles like a kit before the piece is submitted. Within four months of launch, revenue for the stream grew <span class='metric'>by 380%</span>">The tariff sets how many news pieces a company gets and which formats it can add: publication on the RBC homepage, editor assistance, placement on the main news page. Each service has its own reach and price, and it all assembles like a kit before the piece is submitted. Within four months of launch, revenue for the stream grew <span class="metric">by 380%</span></p>
+          </div>
+          <div class="cm"><img src="img/10-16x9.webp" width="4978" height="2800" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- ГРУППА 5 · Формы, система, исследование -->
+
+        <!-- 11 · Формы заведения и редактирования -->
+        <div class="ccard full dark reveal">
+          <div class="ct">
+            <h3 data-ru="Заведение и редактирование" data-en="Creating and editing">Creating and editing</h3>
+            <p data-ru="Под каждый объект собрал формы: компания, ИП, торговая марка, эксперт. Компания добавляет экспертов сама, редактирует их, публикует интервью и мнения, снимает с публикации. Всё это без обращения в поддержку и без ручной работы на нашей стороне"
+               data-en="I built forms for every object: company, sole proprietor, trademark, expert. A company adds its own experts, edits them, publishes interviews and opinions, and takes them down. All of it without contacting support and without manual work on our side">I built forms for every object: company, sole proprietor, trademark, expert. A company adds its own experts, edits them, publishes interviews and opinions, and takes them down. All of it without contacting support and without manual work on our side</p>
+          </div>
+          <div class="cm"><img src="img/11-16x9.webp" width="4978" height="2800" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- 12 · UI-кит и дизайн-система (светлая + тёмная темы) -->
+        <div class="ccard dark reveal">
+          <div class="ct">
+            <h3 data-ru="Компоненты в дизайн-системе" data-en="Components in the design system">Components in the design system</h3>
+            <p data-html data-ru="Собрал UI-кит продукта и внёс в дизайн-систему шаблоны статей, элементы профиля, рекламные форматы и брендированные секции. Компоненты и токены поддерживают одновременно светлую и тёмную темы. Скорость подготовки макетов в продукте и соседних проектах выросла <span class='metric'>в 3 раза</span>"
+               data-en="I assembled the product's UI kit and contributed article templates, profile elements, ad formats, and branded sections to the design system. Components and tokens support light and dark themes at the same time. Mock-up production across this product and neighbouring ones got <span class='metric'>3&times; faster</span>">I assembled the product's UI kit and contributed article templates, profile elements, ad formats, and branded sections to the design system. Components and tokens support light and dark themes at the same time. Mock-up production across this product and neighbouring ones got <span class="metric">3&times; faster</span></p>
+          </div>
+          <div class="cm"><img src="img/12-sq.webp" width="2800" height="2800" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- 13 · UX-исследование -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Проверка на пользователях" data-en="Tested with real people">Tested with real people</h3>
+            <p data-ru="Вместе с командой провели количественное и качественное исследование: опросы на большой выборке и сессии в UX-лаборатории. Часть гипотез подтвердилась, часть мы опровергли и переделали сценарии — например, порядок шагов при заведении эксперта и подачу тарифов. В продакшен ушла версия, проверенная на людях, а не только согласованная внутри"
+               data-en="Together with the team we ran both quantitative and qualitative research: large-sample surveys and sessions in the UX lab. Some hypotheses held up, others we disproved and reworked the flows — the order of steps when creating an expert, for instance, and how tariffs are presented. What shipped was a version validated with people, not just signed off internally">Together with the team we ran both quantitative and qualitative research: large-sample surveys and sessions in the UX lab. Some hypotheses held up, others we disproved and reworked the flows — the order of steps when creating an expert, for instance, and how tariffs are presented. What shipped was a version validated with people, not just signed off internally</p>
+          </div>
+          <div class="cm"><img src="img/13-sq.webp" width="2800" height="2800" alt="" loading="lazy"></div>
         </div>
 
       </div>
