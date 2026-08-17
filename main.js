@@ -264,7 +264,7 @@
   // Как только <img> загрузилась (или упала) — вешаем .loaded, и блик гаснет.
   function initShimmer() {
     var imgs = document.querySelectorAll(
-      ".feed-cover img, .next-cover img, .about-portrait img, .ft-media img, .photo-bento .pb img"
+      ".feed-cover img, .next-cover img, .about-portrait img, .ft-media img, .ccard .cm img, .photo-bento .pb img"
     );
     imgs.forEach(function (img) {
       if (img.complete && img.naturalWidth > 0) { img.classList.add("loaded"); return; }
