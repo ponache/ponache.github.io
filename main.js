@@ -267,11 +267,47 @@
       ".feed-cover img, .next-cover img, .about-portrait img, .ft-media img, .ccard .cm img, .photo-bento .pb img"
     );
     imgs.forEach(function (img) {
-      if (img.complete && img.naturalWidth > 0) { img.classList.add("loaded"); return; }
-      var done = function () { img.classList.add("loaded"); };
+      // .loaded — для :has(); .media-loaded на обёртке — фолбэк для Safari до 16.4
+      var mark = function () {
+        img.classList.add("loaded");
+        if (img.parentElement) img.parentElement.classList.add("media-loaded");
+      };
+      if (img.complete && img.naturalWidth > 0) { mark(); return; }
+      var done = mark;
       img.addEventListener("load", done);
       img.addEventListener("error", done);
     });
+  }
+
+  /* ---------- Лоадер главной (первое открытие в сессии) ---------- */
+  // Плашка с прыгающей черникой висит поверх страницы, пока не отработает window.load.
+  // Ягоду можно потыкать — обработчик хлопка на неё уже повесил initBerry.
+  function initLoader() {
+    var el = document.getElementById("site-loader");
+    if (!el) return;
+    if (document.documentElement.classList.contains("no-loader")) { el.remove(); return; }
+
+    var MIN = 700;    // минимум на экране, чтобы баунс успел показаться
+    var MAX = 6000;   // страховка: не держим страницу, если что-то так и не догрузилось
+    var start = Date.now();
+    var hidden = false;
+    document.body.style.overflow = "hidden";
+
+    function hide() {
+      if (hidden) return;
+      hidden = true;
+      el.classList.add("done");
+      document.body.style.overflow = "";
+      playEnter();                                    // страница въезжает вместе с уходом лоадера
+      try { sessionStorage.setItem("portfolio-loaded", "1"); } catch (e) {}
+      setTimeout(function () { el.remove(); }, 700);   // после fade-out убираем из DOM
+    }
+
+    function ready() { setTimeout(hide, Math.max(0, MIN - (Date.now() - start))); }
+
+    if (document.readyState === "complete") ready();
+    else window.addEventListener("load", ready);
+    setTimeout(hide, MAX);
   }
 
   /* ---------- Footer year ---------- */
@@ -290,6 +326,7 @@
     initModal();
     initBerry();
     initShimmer();
+    initLoader();
     initYear();
   });
 })();

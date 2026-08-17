@@ -42,7 +42,10 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-img { max-width: 100%; display: block; }
+/* height: auto обязателен: у картинок проставлены атрибуты width/height (чтобы
+   браузер резервировал место под шиммер), а без этого атрибутная высота
+   перебивала бы aspect-ratio из CSS и обложки растягивались бы на натуральный размер */
+img { max-width: 100%; height: auto; display: block; }
 a   { color: inherit; text-decoration: none; }
 /* убираем задержку тапа (браузер иначе ждёт double-tap ~300мс) */
 a, button { touch-action: manipulation; }
@@ -291,6 +294,8 @@ a, button { touch-action: manipulation; }
 .ft-media:has(img.loaded)::before,
 .ccard .cm:has(img.loaded)::before,
 .photo-bento .pb:has(img.loaded)::before { opacity: 0; animation: none; }
+/* фолбэк для браузеров без :has() (Safari до 16.4) — класс на обёртке вешает JS */
+.media-loaded::before { opacity: 0; animation: none; }
 @keyframes shimmer {
   from { background-position: 150% 0; }
   to   { background-position: -50% 0; }
@@ -692,6 +697,32 @@ main { animation: pageIn .6s cubic-bezier(.22,.61,.36,1) both; }
   /* пасхалку в футере тоже не скачем — только лёгкая подмигивающая прозрачность */
   .legal-logo.squish { animation: berry-fade 320ms ease; }
 }
+
+/* ========================= SITE LOADER (первое открытие) ========================= */
+/* На первом открытии главной поверх страницы лежит плашка в цвет фона, а по центру
+   дышит черника из футера — зацикленный баунс, пока не догрузится страница.
+   У ягоды тот же класс .legal-logo, так что пасхалка с фиолетовым хлопком работает
+   и здесь (initBerry ловит все .legal-logo). Правило бликом ниже по файлу —
+   .legal-logo.squish идёт после и на время хлопка перебивает баунс. */
+.site-loader {
+  position: fixed; inset: 0; z-index: 80;
+  display: grid; place-items: center;
+  background: var(--bg);
+  transition: opacity var(--t-slow);
+}
+.site-loader.done { opacity: 0; pointer-events: none; }
+.site-loader .legal-logo {
+  width: 64px; height: 64px;
+  animation: berry-bounce 1.05s cubic-bezier(.45, 0, .55, 1) infinite;
+}
+@keyframes berry-bounce {
+  0%, 100% { transform: scale(.84); }
+  50%      { transform: scale(1.08); }
+}
+/* повторный вход в рамках сессии — лоадер не показываем (класс ставит инлайн-скрипт в <head>) */
+html.no-loader .site-loader { display: none; }
+@media (max-width: 600px) { .site-loader .legal-logo { width: 52px; height: 52px; } }
+@media (prefers-reduced-motion: reduce) { .site-loader .legal-logo { animation: none; } }
 
 /* ========================= FOOTER LOGO EASTER EGG ========================= */
 /* Клик по чернике в футере: она сплющивается, будто её раздавили пальцем,
