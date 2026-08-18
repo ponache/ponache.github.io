@@ -279,6 +279,31 @@
     });
   }
 
+  /* ---------- Видео в карточках кейса ---------- */
+  // Ролики лежат с preload="none" и poster'ом, поэтому ничего не грузится,
+  // пока до карточки не доскроллили. В вьюпорте — играем, за его пределами —
+  // ставим на паузу, чтобы не жечь батарею. Если пользователь просил
+  // уменьшить анимацию, оставляем статичный poster и видео не трогаем.
+  function initCaseVideo() {
+    var vids = document.querySelectorAll(".ccard .cm video");
+    if (!vids.length) return;
+    var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (calm || !("IntersectionObserver" in window)) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var v = entry.target;
+        if (entry.isIntersecting) {
+          if (v.preload === "none") v.preload = "auto";
+          var p = v.play();
+          if (p && p.catch) p.catch(function () {});   // автоплей могли запретить
+        } else if (!v.paused) {
+          v.pause();
+        }
+      });
+    }, { threshold: 0.25 });
+    vids.forEach(function (v) { io.observe(v); });
+  }
+
   /* ---------- Лоадер главной (первое открытие в сессии) ---------- */
   // Плашка с прыгающей черникой висит поверх страницы, пока не отработает window.load.
   // Ягоду можно потыкать — обработчик хлопка на неё уже повесил initBerry.
@@ -326,6 +351,7 @@
     initModal();
     initBerry();
     initShimmer();
+    initCaseVideo();
     initLoader();
     initYear();
   });

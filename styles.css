@@ -284,7 +284,8 @@ a, button { touch-action: manipulation; }
    (меняем только сам градиент — background-size остаётся из правила выше) */
 .feature-card.dark .ft-media::before,
 .feature-card.overlay .ft-media::before,
-.ccard.dark .cm::before {
+.ccard.dark .cm::before,
+.ccard.violet .cm::before {
   background-image: linear-gradient(90deg, transparent 40%, rgba(255,255,255,.055) 50%, transparent 60%);
 }
 /* картинка догрузилась — блик выключаем */
@@ -475,7 +476,27 @@ a, button { touch-action: manipulation; }
 .ccard .cm img { display: block; width: 100%; height: auto; }
 .ccard.dark { background: var(--ink); color: #fff; }
 .ccard.dark .ct p { color: rgba(255,255,255,.7); }
+/* фиолетовая карточка — как .dark, но фирменной заливкой.
+   Цвет снят с самого верхнего ряда пикселей картинки, иначе на стыке
+   текста и медиа видна полоска. Меняешь картинку — пересними цвет. */
+.ccard.violet { background: #9678F4; color: #fff; }
+.ccard.violet .ct p { color: rgba(255,255,255,.78); }
+/* Браузер декодирует фон ролика чуть светлее номинального цвета подложки,
+   поэтому на стыке текста и медиа остаётся тонкое расхождение. Точным
+   цветом его не убрать, гасим мягким переходом от цвета карточки.
+   Высота в процентах, чтобы работало на всех ширинах. */
+.ccard.violet .cm::after {
+  content: ""; position: absolute; inset: 0 0 auto; height: 9%;
+  z-index: 1; pointer-events: none;
+  background: linear-gradient(180deg, #9678F4 0%, rgba(150,120,244,0) 100%);
+}
 .metric { color: var(--brand); font-weight: 700; }
+/* на цветной заливке фиолетовая метрика не читается — выводим белым */
+.ccard.dark .metric, .ccard.violet .metric { color: #fff; }
+/* видео-карточки: ведут себя как картинка, аспект задаёт сам файл */
+.ccard .cm video { display: block; width: 100%; height: auto; }
+/* у видео есть poster, он появляется сразу — блик не нужен */
+.ccard .cm:has(video)::before { display: none; }
 
 @media (max-width: 760px) {
   .ccard { border-radius: var(--radius); }

@@ -59,91 +59,197 @@
     </section>
 
     <!-- ============================================================
-         КЕЙС — плашки. Сетка 2 колонки, отступы 24px.
-
-         ТРИ ТИПА (класс .feature-card + модификатор):
-           .media-only    ТИП 1 · Обложка — только картинка, без текста
-           (базовый)      ТИП 2 · Текст + PNG — текст сверху, PNG снизу на серой плашке
-           .overlay       ТИП 3 · Текст + заливка — картинка на всю плашку, белый текст поверх
-         МОДИФИКАТОРЫ (комбинируются с ЛЮБЫМ типом):
-           .span2         на всю ширину сетки (без него — половина, 1 колонка)
-           .dark          тёмная плашка (для типа 2)
-
-         КАРТИНКИ лежат в projects/<slug>/img/ и именуются:
-           {NN}-{type}[-{mod}...].{ext}
-           NN=порядок (01,02…) · type=cover|png|fill · mod=wide|dark
-           напр.: 01-cover-wide.webp · 02-png.webp · 03-png-dark.webp · 04-fill-wide.webp
-         Плейсхолдер <div class="ph"> заменяется на <img src="img/…" alt="">.
+         КЕЙС — карточки (v2). Одна карточка = опц. текст сверху + одна
+         картинка на сером. Аспект задаёт сама картинка (прозрачный PNG).
+           .ccard        половина ширины
+           +.full        на всю ширину сетки
+           +.fill        без текста — картинка на всю карточку
+           +.violet      фиолетовая заливка (одна карточка — апгрейд купонов)
+         Метрики в тексте — <span class="metric"> (нужен data-html на <p>).
+         Картинки: img/NN-sq.webp | img/NN-16x9.webp
+         Видео: img/NN-*.webm (VP9) + poster того же имени .webp. Если
+         браузер не умеет webm, останется статичный poster — этого хватает,
+         второй фолбэк не держим. Ленивую загрузку и play/pause по вьюпорту
+         делает initCaseVideo() в main.js.
          ============================================================ -->
     <div class="wrap">
       <div class="case-flow">
 
-        <!-- ТИП 1 · Обложка на всю ширину — 01-cover-wide.webp -->
-        <div class="feature-card media-only span2 reveal">
-          <div class="ft-media"><img src="img/01-cover-wide.webp" width="4000" height="2250" alt=""></div>
+        <!-- Обложка кейса — 16:9, без текста -->
+        <div class="ccard fill full reveal">
+          <div class="cm"><img src="img/01-cover-wide.webp" width="4000" height="2250" alt="" loading="eager"></div>
         </div>
 
-        <!-- ТИП 2 · Текст + PNG (серая) — 02-png.webp -->
-        <div class="feature-card reveal">
-          <div class="ft-text">
-            <h3 data-ru="Контекст и задача" data-en="Context & problem">Контекст и задача</h3>
-            <p data-ru="Что за продукт, какую проблему испытывали пользователи и какую цель поставили."
-               data-en="The product, the problem users faced, and the goal you set.">Что за продукт, какую проблему испытывали пользователи и какую цель поставили.</p>
+        <!-- ГРУППА 0 · Подход -->
+
+        <!-- 02 · Ресёрч и стейкхолдеры -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Ресёрч и стейкхолдеры" data-en="Research and stakeholders">Research and stakeholders</h3>
+            <p data-ru="Каждая механика в кейсе выросла из ресёрча. Лично провёл больше 50 глубинных интервью, свыше 5 исследований с UX-лабораториями и больше 50 количественных опросов с общей выборкой более 5000 человек. Гипотезы складывал в дерево метрик и приоритизировал по RICE, сценарии разбирал через JTBD. Решения защищал перед 16 стейкхолдерами"
+               data-en="Every mechanic in this case grew out of research. I personally ran more than 50 in-depth interviews, over 5 studies with UX labs and more than 50 quantitative surveys with a combined sample of over 5,000 people. Hypotheses went into a metric tree and were prioritised with RICE, scenarios were unpacked with JTBD. I defended the work in front of 16 stakeholders">Every mechanic in this case grew out of research. I personally ran more than 50 in-depth interviews, over 5 studies with UX labs and more than 50 quantitative surveys with a combined sample of over 5,000 people. Hypotheses went into a metric tree and were prioritised with RICE, scenarios were unpacked with JTBD. I defended the work in front of 16 stakeholders</p>
           </div>
-          <div class="ft-media"><div class="ph">PNG · 02-png</div></div>
+          <div class="cm"><img src="img/02-sq.webp" width="2800" height="2800" alt="" loading="lazy"></div>
         </div>
 
-        <!-- ТИП 2 · Текст + PNG, тёмная — 03-png-dark.webp -->
-        <div class="feature-card dark reveal">
-          <div class="ft-text">
-            <h3 data-ru="Что выяснили" data-en="What we learned">Что выяснили</h3>
-            <p data-ru="Интервью, данные, конкуренты — ключевые инсайты, на которых строилось решение."
-               data-en="Interviews, data, competitors — the key insights the solution was built on.">Интервью, данные, конкуренты — ключевые инсайты, на которых строилось решение.</p>
+        <!-- ГРУППА 1 · Купоны -->
+
+        <!-- 03 · Встречающий фуллскрин (видео) -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Первое знакомство с выгодой" data-en="First look at the savings">First look at the savings</h3>
+            <p data-ru="Сценарий начинается с фуллскрина, который объясняет, что с купонами заказы обходятся дешевле. Это первый триггер петли возврата и вход во всю механику. Анимация показывает выгоду быстрее, чем это сделал бы текст"
+               data-en="The scenario opens with a fullscreen that explains how coupons make orders cheaper. It is the first trigger of the return loop and the entry point into the whole mechanic. The animation shows the value faster than any copy would">The scenario opens with a fullscreen that explains how coupons make orders cheaper. It is the first trigger of the return loop and the entry point into the whole mechanic. The animation shows the value faster than any copy would</p>
           </div>
-          <div class="ft-media"><div class="ph on-dark">PNG · 03-png-dark</div></div>
+          <div class="cm"><video src="img/03-sq.webm" poster="img/03-sq.webp" width="1400" height="1400" muted loop playsinline preload="none" aria-hidden="true"></video></div>
         </div>
 
-        <!-- ТИП 3 · Текст + заливка на всю ширину — 04-fill-wide.webp -->
-        <div class="feature-card overlay span2 reveal">
-          <div class="ft-text">
-            <h3 data-ru="Как шли к решению" data-en="How we got there">Как шли к решению</h3>
-            <p data-ru="Ход мысли: гипотезы, скетчи, прототипы, тестирование."
-               data-en="The thinking: hypotheses, sketches, prototypes, testing.">Ход мысли: гипотезы, скетчи, прототипы, тестирование.</p>
+        <!-- 04 · Точка входа на главной (видео) -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Точка входа на главной" data-en="Entry point on the home screen">Entry point on the home screen</h3>
+            <p data-ru="Купоны видно с первого экрана. Баннер показывает сумму доступной выгоды и ведёт в дом купонов. Параллельно работают входы из таббара, профиля, меню и чекаута, поэтому пользователь не теряет свои купоны между сессиями. Для РФ и для международных рынков сделал два разных ключевых визуала, потому что механика одна, а контекст и валюты разные"
+               data-en="Coupons are visible from the very first screen. The banner shows the total available savings and leads into the coupon home. Entry points from the tab bar, profile, menu and checkout work in parallel, so people never lose track of their coupons between sessions. I designed two different key visuals, one for Russia and one for international markets, because the mechanic is the same while the context and currencies are not">Coupons are visible from the very first screen. The banner shows the total available savings and leads into the coupon home. Entry points from the tab bar, profile, menu and checkout work in parallel, so people never lose track of their coupons between sessions. I designed two different key visuals, one for Russia and one for international markets, because the mechanic is the same while the context and currencies are not</p>
           </div>
-          <div class="ft-media"><div class="ph on-dark">Заливка · 04-fill-wide</div></div>
+          <div class="cm"><video src="img/04-sq.webm" poster="img/04-sq.webp" width="1400" height="1400" muted loop playsinline preload="none" aria-hidden="true"></video></div>
         </div>
 
-        <!-- ТИП 2 · Текст + PNG (серая) — 05-png.webp -->
-        <div class="feature-card reveal">
-          <div class="ft-text">
-            <h3 data-ru="Внимание к деталям" data-en="Attention to detail">Внимание к деталям</h3>
-            <p data-ru="Состояния, микровзаимодействия, граничные случаи."
-               data-en="States, micro-interactions, edge cases.">Состояния, микровзаимодействия, граничные случаи.</p>
+        <!-- 05 · Экран меню -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Выгода видна в меню" data-en="Savings visible in the menu">Savings visible in the menu</h3>
+            <p data-ru="Внутри меню купон живёт в шапке ресторана. Пользователь видит процент скидки, порог корзины и число оставшихся применений. Скидки на блюда подсвечены зелёными ценами, поэтому выгода читается ещё до перехода в корзину"
+               data-en="Inside a restaurant menu the coupon lives in the header. People see the discount percentage, the cart threshold and how many uses are left. Dish discounts are highlighted with green prices, so the value reads before anyone reaches the cart">Inside a restaurant menu the coupon lives in the header. People see the discount percentage, the cart threshold and how many uses are left. Dish discounts are highlighted with green prices, so the value reads before anyone reaches the cart</p>
           </div>
-          <div class="ft-media"><div class="ph">PNG · 05-png</div></div>
+          <div class="cm"><img src="img/05-sq.webp" width="2800" height="2800" alt="" loading="lazy"></div>
         </div>
 
-        <!-- ТИП 2 · Текст + PNG (серая) — 06-png.webp -->
-        <div class="feature-card reveal">
-          <div class="ft-text">
-            <h3 data-ru="Финальное решение" data-en="The solution">Финальное решение</h3>
-            <p data-ru="Ключевые экраны и почему именно так."
-               data-en="The key screens and why it works this way.">Ключевые экраны и почему именно так.</p>
+        <!-- 06 · Дом купонов -->
+        <div class="ccard full reveal">
+          <div class="ct">
+            <h3 data-ru="Дом купонов" data-en="Coupon home">Coupon home</h3>
+            <p data-html data-ru="Собрал все купоны, промокоды и онлайн-механики в одном месте. Список показывает главное, детальная шторка раскрывает условия, минимальную корзину, срок действия и доступные заведения. Ключевая механика это наборы купонов. Они дают выгоду не на один заказ, а на серию будущих, и за счёт этого поднимают частотность и LTV. После запуска это дало <span class='metric'>+1% заказов</span> и у новичков, и у постоянных пользователей"
+               data-en="I brought every coupon, promo code and online mechanic into one place. The list shows the essentials, the detail sheet opens up conditions, minimum cart, validity and eligible venues. The core mechanic is coupon sets. They deliver value not on a single order but across a series of future ones, which lifts frequency and LTV. After launch this delivered <span class='metric'>+1% orders</span> among both new and returning users">I brought every coupon, promo code and online mechanic into one place. The list shows the essentials, the detail sheet opens up conditions, minimum cart, validity and eligible venues. The core mechanic is coupon sets. They deliver value not on a single order but across a series of future ones, which lifts frequency and LTV. After launch this delivered <span class='metric'>+1% orders</span> among both new and returning users</p>
           </div>
-          <div class="ft-media"><div class="ph">PNG · 06-png</div></div>
+          <div class="cm"><img src="img/06-16x9.webp" width="4978" height="2800" alt="" loading="lazy"></div>
         </div>
 
-        <!-- ТИП 2 · результат на всю ширину (со списком) — 07-png-wide.webp -->
-        <div class="feature-card span2 reveal">
-          <div class="ft-text">
-            <h3 data-ru="Чем закончилось" data-en="The outcome">Чем закончилось</h3>
-            <ul>
-              <li data-ru="+ XX% к ключевой метрике" data-en="+ XX% on the key metric">+ XX% к ключевой метрике</li>
-              <li data-ru="Сократили путь пользователя с N до M шагов" data-en="Reduced the user flow from N to M steps">Сократили путь пользователя с N до M шагов</li>
-              <li data-ru="Решение легло в основу дизайн-системы" data-en="The solution became the basis of the design system">Решение легло в основу дизайн-системы</li>
-            </ul>
+        <!-- 07 · Точка входа на чекауте (видео) -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="В один тап" data-en="One tap">One tap</h3>
+            <p data-ru="На чекауте купон применяется без ухода с экрана. Информер показывает, сколько пользователь экономит на этом заказе и какой купон сработал. Если выгоднее применить другой, подсказка предложит замену"
+               data-en="At checkout a coupon applies without leaving the screen. The informer shows how much this order saves and which coupon did it. If another one is worth more, a hint offers the swap">At checkout a coupon applies without leaving the screen. The informer shows how much this order saves and which coupon did it. If another one is worth more, a hint offers the swap</p>
           </div>
-          <div class="ft-media"><div class="ph">PNG · 07-png-wide</div></div>
+          <div class="cm"><video src="img/07-sq.webm" poster="img/07-sq.webp" width="1400" height="1400" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+        </div>
+
+        <!-- 08 · Лайт-чекаут -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Лайт-чекаут" data-en="Light checkout">Light checkout</h3>
+            <p data-ru="Покупка и апгрейд купонов не должны требовать полного чекаута. Собрал упрощённую версию, где оплата занимает один шаг. Так пользователь остаётся внутри купонного сценария и не выпадает из воронки на середине"
+               data-en="Buying and upgrading coupons should not require a full checkout. I built a simplified version where payment takes a single step. People stay inside the coupon scenario instead of dropping out halfway through the funnel">Buying and upgrading coupons should not require a full checkout. I built a simplified version where payment takes a single step. People stay inside the coupon scenario instead of dropping out halfway through the funnel</p>
+          </div>
+          <div class="cm"><img src="img/08-sq.webp" width="2800" height="2800" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- 09 · Апгрейд купонов — фиолетовая, во всю ширину (видео) -->
+        <div class="ccard full violet reveal">
+          <div class="ct">
+            <h3 data-ru="Апгрейд купонов" data-en="Coupon upgrades">Coupon upgrades</h3>
+            <p data-html data-ru="Купоны можно улучшать. Пользователь приходит по внешнему каналу, например от блогера, получает бустер и повышает номинал сразу всего набора. Ограниченный срок действия создаёт FOMO-эффект, который сильно качает новичков. Похожие механики хорошо работают у азиатских конкурентов, я разобрал их и адаптировал под наш флоу и под запуск новых стран. На новых рынках механика дала <span class='metric'>+10% заказов новичков</span>"
+               data-en="Coupons can be improved. Someone arrives through an external channel, a blogger for example, gets a booster and raises the value of the whole set at once. A limited validity window creates a FOMO effect that pushes new users hard. Similar mechanics work well for Asian competitors, so I took them apart and adapted them to our flow and to the launch of new countries. On the new markets it delivered <span class='metric'>+10% orders from new users</span>">Coupons can be improved. Someone arrives through an external channel, a blogger for example, gets a booster and raises the value of the whole set at once. A limited validity window creates a FOMO effect that pushes new users hard. Similar mechanics work well for Asian competitors, so I took them apart and adapted them to our flow and to the launch of new countries. On the new markets it delivered <span class='metric'>+10% orders from new users</span></p>
+          </div>
+          <div class="cm"><video src="img/09-16x9.webm" poster="img/09-16x9.webp" width="2490" height="1400" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+        </div>
+
+        <!-- ГРУППА 2 · Выгода на корзине -->
+
+        <!-- 10 · Скидки в корзине -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Скидки в корзине" data-en="Discounts in the cart">Discounts in the cart</h3>
+            <p data-html data-ru="Пересобрал то, как выгода дистрибуцируется в корзине. Зелёные цены и бэйджи на блюдах, глубокие скидки по способам оплаты, подпискам и внутренним механикам сервиса. Пользователь видит не абстрактный итог, а конкретную экономию на каждой позиции. Вклад в маржинальность составил <span class='metric'>+1% GM</span>"
+               data-en="I rebuilt how value is distributed in the cart. Green prices and badges on dishes, deep discounts tied to payment methods, subscriptions and internal service mechanics. People see concrete savings on each item instead of an abstract total. The contribution to margin came to <span class='metric'>+1% GM</span>">I rebuilt how value is distributed in the cart. Green prices and badges on dishes, deep discounts tied to payment methods, subscriptions and internal service mechanics. People see concrete savings on each item instead of an abstract total. The contribution to margin came to <span class='metric'>+1% GM</span></p>
+          </div>
+          <div class="cm"><img src="img/10-sq.webp" width="2800" height="2800" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- 11 · Контекстный помощник -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Контекстный помощник" data-en="A contextual helper">A contextual helper</h3>
+            <p data-ru="Добавил плейсменты, которые подсказывают, как сэкономить именно на этом заказе. Добрать до бесплатной доставки, дотянуть до порога скидки, добавить позицию, которая откроет промо. Помощник считает за пользователя и предлагает следующий шаг вместо того, чтобы показать недостающую сумму. Средний чек вырос"
+               data-en="I added placements that suggest how to save on this particular order. Top up to free delivery, reach a discount threshold, add an item that unlocks a promo. The helper does the math and offers the next step instead of showing the missing amount. Average order value went up">I added placements that suggest how to save on this particular order. Top up to free delivery, reach a discount threshold, add an item that unlocks a promo. The helper does the math and offers the next step instead of showing the missing amount. Average order value went up</p>
+          </div>
+          <div class="cm"><img src="img/11-sq.webp" width="2800" height="2800" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- ГРУППА 3 · Футер -->
+
+        <!-- 12 · Футер -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Футер" data-en="The footer">The footer</h3>
+            <p data-ru="Футер появляется с меню и живёт почти до чекаута. Раньше он просто сообщал стоимость доставки. Превратил его в инструмент с трешхолдами и анимациями, который показывает, сколько осталось до более выгодной доставки и какие скидки уже применены"
+               data-en="The footer appears in the menu and lives almost all the way to checkout. It used to simply state the delivery fee. I turned it into a tool with thresholds and animations that shows how much is left until cheaper delivery and which discounts already apply">The footer appears in the menu and lives almost all the way to checkout. It used to simply state the delivery fee. I turned it into a tool with thresholds and animations that shows how much is left until cheaper delivery and which discounts already apply</p>
+          </div>
+          <div class="cm"><img src="img/12-sq.webp" width="2800" height="2800" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- 13 · Гибкая логика -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Гибкая логика" data-en="Flexible logic">Flexible logic</h3>
+            <p data-html data-ru="Футер перестраивается под условия. Работает и при флэт-прайсинге, и при динамическом. Закрывает доплаты, тяжёлые заказы, минимальную корзину и периоды высокого спроса, когда пользователя нужно аккуратно развернуть в другие заведения. Логика адаптируется под направление, ритейл и готовая еда живут по разным правилам. Инструмент принёс около <span class='metric'>+1% заказов и GMV</span>"
+               data-en="The footer rebuilds itself around the conditions. It works with flat pricing and with dynamic pricing alike. It covers surcharges, heavy orders, minimum cart requirements and peak demand periods, when people need to be gently redirected to other venues. The logic adapts to the vertical, retail and ready-to-eat play by different rules. The tool brought around <span class='metric'>+1% orders and GMV</span>">The footer rebuilds itself around the conditions. It works with flat pricing and with dynamic pricing alike. It covers surcharges, heavy orders, minimum cart requirements and peak demand periods, when people need to be gently redirected to other venues. The logic adapts to the vertical, retail and ready-to-eat play by different rules. The tool brought around <span class='metric'>+1% orders and GMV</span></p>
+          </div>
+          <div class="cm"><img src="img/13-sq.webp" width="2800" height="2800" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- 14 · Десктоп -->
+        <div class="ccard full reveal">
+          <div class="ct">
+            <h3 data-ru="Десктоп" data-en="Desktop">Desktop</h3>
+            <p data-ru="Инструмент собран и для десктопа. Здесь футер работает внутри липкой корзины и держит ту же логику трешхолдов при другой плотности интерфейса. Все фичи кейса делались в двух версиях сразу"
+               data-en="The tool was built for desktop too. Here the footer works inside the sticky cart and holds the same threshold logic at a different interface density. Every feature in this case shipped in both versions">The tool was built for desktop too. Here the footer works inside the sticky cart and holds the same threshold logic at a different interface density. Every feature in this case shipped in both versions</p>
+          </div>
+          <div class="cm"><img src="img/14-16x9.webp" width="4978" height="2800" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- ГРУППА 4 · Чекаут -->
+
+        <!-- 15 · Карусель способов оплаты -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Карусель способов оплаты" data-en="Payment method carousel">Payment method carousel</h3>
+            <p data-html data-ru="Раньше выбор способа оплаты жил на отдельном экране, куда доходили немногие. Развернул его в карусель прямо на чекауте и добавил промо-блок, который показывает выгоду от конкретного способа. Здесь же точки входа в подключение новой карты и в локальные методы, от мобильных денег до оплаты криптовалютой и QR. Дистрибуция принесла около <span class='metric'>+0,5% заказов и GMV</span>"
+               data-en="Choosing a payment method used to live on a separate screen that few people reached. I unfolded it into a carousel right on checkout and added a promo block that shows the value of each method. The same place holds entry points into adding a new card and into local methods, from mobile money to crypto and QR payments. The distribution brought around <span class='metric'>+0.5% orders and GMV</span>">Choosing a payment method used to live on a separate screen that few people reached. I unfolded it into a carousel right on checkout and added a promo block that shows the value of each method. The same place holds entry points into adding a new card and into local methods, from mobile money to crypto and QR payments. The distribution brought around <span class='metric'>+0.5% orders and GMV</span></p>
+          </div>
+          <div class="cm"><img src="img/15-sq.webp" width="2800" height="2800" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- 16 · Прозрачная детализация -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Прозрачная детализация" data-en="Transparent breakdown">Transparent breakdown</h3>
+            <p data-ru="Кросс-чек показывает, из чего складывается итог. Каждая скидка названа, баллы и купоны применяются переключателем, финальная сумма пересчитывается на месте. Прозрачность здесь работает на доверие, пользователь понимает, за что платит, и реже уходит с последнего шага. Конверсия в выбор способа оплаты выросла"
+               data-en="The cross-check shows what the total is made of. Every discount is named, points and coupons apply with a toggle, the final sum recalculates in place. Transparency works for trust here, people understand what they pay for and abandon the last step less often. Conversion into choosing a payment method went up">The cross-check shows what the total is made of. Every discount is named, points and coupons apply with a toggle, the final sum recalculates in place. Transparency works for trust here, people understand what they pay for and abandon the last step less often. Conversion into choosing a payment method went up</p>
+          </div>
+          <div class="cm"><img src="img/16-sq.webp" width="2800" height="2800" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- ГРУППА 5 · Графика -->
+
+        <!-- 17 · Графика -->
+        <div class="ccard full reveal">
+          <div class="ct">
+            <h3 data-ru="Графика" data-en="Graphics">Graphics</h3>
+            <p data-html data-ru="Отдельная часть работы — это графика внутри продукта. Рисовал трёхмерные иконки под сезонные поводы, акции и запуски новых направлений. <span class='metric'>Больше 50 вариантов</span> в разных размерах и в единой стилистике, часть работы собрал на генеративных моделях. Эмоциональный слой поверх всей механики, который заодно лучше ведёт людей в нужные разделы"
+               data-en="A separate part of the work was graphics inside the product. I designed 3D icons for seasonal occasions, campaigns and launches of new verticals. <span class='metric'>More than 50 variants</span> across different sizes in one consistent style, with part of the pipeline built on generative models. An emotional layer on top of all the mechanics that also guides people into the right sections better">A separate part of the work was graphics inside the product. I designed 3D icons for seasonal occasions, campaigns and launches of new verticals. <span class='metric'>More than 50 variants</span> across different sizes in one consistent style, with part of the pipeline built on generative models. An emotional layer on top of all the mechanics that also guides people into the right sections better</p>
+          </div>
+          <div class="cm"><img src="img/17-16x9.webp" width="4978" height="2800" alt="" loading="lazy"></div>
         </div>
 
       </div>
