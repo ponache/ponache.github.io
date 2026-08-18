@@ -291,7 +291,7 @@
     if (!vids.length) return;
 
     // ролик прозрачный, пока не пошли настоящие кадры — тогда проявляем его
-    // поверх статичной картинки (CSS .cm-video.playing)
+    // поверх кадра-фона контейнера (CSS .cm-video.playing)
     vids.forEach(function (v) {
       v.addEventListener("playing", function () {
         // videoWidth появляется вместе с метаданными; без них Safari успевает
