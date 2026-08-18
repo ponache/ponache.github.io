@@ -493,32 +493,25 @@ a, button { touch-action: manipulation; }
 .metric { color: var(--brand); font-weight: 700; }
 /* на цветной заливке фиолетовая метрика не читается — выводим белым */
 .ccard.dark .metric, .ccard.violet .metric { color: #fff; }
-/* Видео-карточки. Под роликом лежит обычная картинка с первым кадром, она
-   и задаёт размер карточки. Само видео — слоем поверх, прозрачное, и
-   проявляется только когда реально начало играть (класс .playing вешает
-   initCaseVideo). Иначе на мобилке видна вспышка в момент, когда браузер
-   меняет poster на видео-слой. Если webm не поддерживается, видео так и не
-   проявится и останется картинка. */
-/* Пропорции задаёт контейнер, а не содержимое: иначе картинка и видео
-   считают размер каждый сам по себе (и до загрузки метаданных Safari берёт
-   для <video> дефолтные 300×150), из-за чего слои разъезжаются. Класс
-   аспекта — в разметке, рядом с .cm-video. */
-.ccard .cm-video { position: relative; }
+/* Видео-карточки. Первый кадр — фоном контейнера (background-image в разметке), видео —
+   единственный элемент внутри, в обычном потоке. На iOS <video> рисуется
+   нативным слоем и, лёжа абсолютом поверх картинки, попадает мимо своего
+   CSS-бокса: кадр съезжает или масштабируется. Без наложения двух
+   элементов съезжать нечему. Пропорции держит класс аспекта, поэтому
+   высота карточки известна до загрузки чего-либо. */
+.ccard .cm-video { position: relative; background: center / cover no-repeat; }
 .ccard .cm-video.ar-sq { aspect-ratio: 1 / 1; }
 .ccard .cm-video.ar-16x9 { aspect-ratio: 16 / 9; }
-/* оба слоя занимают контейнер целиком и кадрируются одинаково */
-.ccard .cm-video img,
 .ccard .cm-video video {
-  position: absolute; inset: 0; display: block;
-  width: 100%; height: 100%; object-fit: cover;
-}
-.ccard .cm-video video {
+  display: block; width: 100%; height: 100%; object-fit: cover;
   opacity: 0; transition: opacity .2s linear;
-  z-index: 2;                     /* выше блика-плейсхолдера (::before, z-index: 1) */
 }
+/* блик не нужен: под видео сразу лежит фон-кадр */
+.ccard .cm-video::before { display: none; }
+/* видео проявляется, только когда реально пошли кадры (класс вешает
+   initCaseVideo) — иначе на мобилке видна вспышка на старте. Не умеет
+   webm — видео не проявится никогда и останется фон-кадр */
 .ccard .cm-video.playing video { opacity: 1; }
-/* ролик пошёл — блик больше не нужен, даже если картинка под ним ещё грузится */
-.ccard .cm-video.playing::before { opacity: 0; animation: none; }
 
 @media (max-width: 760px) {
   .ccard { border-radius: var(--radius); }
