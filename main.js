@@ -280,27 +280,58 @@
   }
 
   /* ---------- Видео в карточках кейса ---------- */
-  // Ролики лежат с preload="none" и poster'ом, поэтому ничего не грузится,
-  // пока до карточки не доскроллили. В вьюпорте — играем, за его пределами —
-  // ставим на паузу, чтобы не жечь батарею. Если пользователь просил
-  // уменьшить анимацию, оставляем статичный poster и видео не трогаем.
+  // Ролики маленькие (вся четвёрка ~850 КБ), поэтому грузим их заранее, а не
+  // в момент входа во вьюпорт — иначе первый показ моргает, пока приезжают
+  // данные. Загрузку стартуем после window.load, чтобы не отбирать канал у
+  // картинок первого экрана. Во вьюпорте — играем, за его пределами — пауза,
+  // чтобы не жечь батарею. Если пользователь просил уменьшить анимацию,
+  // оставляем статичный poster и видео не трогаем.
   function initCaseVideo() {
     var vids = document.querySelectorAll(".ccard .cm video");
     if (!vids.length) return;
+
+    // блик-плейсхолдер под видео не нужен: у ролика сразу есть poster.
+    // В CSS он снят через :has(video), но в Safari до 16.4 :has() нет —
+    // там гасит этот класс
+    vids.forEach(function (v) {
+      if (v.parentElement) v.parentElement.classList.add("media-loaded");
+    });
+
     var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (calm || !("IntersectionObserver" in window)) return;
+
+    // iOS Safari нередко игнорирует preload="auto" и ждёт до последнего —
+    // явный load() его подталкивает
+    function warmUp() { vids.forEach(function (v) { try { v.load(); } catch (e) {} }); }
+    if (document.readyState === "complete") warmUp();
+    else window.addEventListener("load", warmUp);
+
+    // играем только когда кадры реально готовы: play() на пустом буфере и даёт
+    // тот самый моргающий кадр между poster'ом и первым кадром видео
+    function play(v) {
+      if (v.readyState >= 3) {                        // HAVE_FUTURE_DATA
+        var p = v.play();
+        if (p && p.catch) p.catch(function () {});    // автоплей могли запретить
+        return;
+      }
+      v.addEventListener("canplay", function once() {
+        v.removeEventListener("canplay", once);
+        if (v.dataset.inview === "1") play(v);
+      });
+    }
+
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         var v = entry.target;
         if (entry.isIntersecting) {
-          if (v.preload === "none") v.preload = "auto";
-          var p = v.play();
-          if (p && p.catch) p.catch(function () {});   // автоплей могли запретить
-        } else if (!v.paused) {
-          v.pause();
+          v.dataset.inview = "1";
+          play(v);
+        } else {
+          v.dataset.inview = "0";
+          if (!v.paused) v.pause();
         }
       });
-    }, { threshold: 0.25 });
+    }, { threshold: 0.25, rootMargin: "200px 0px" });   // стартуем чуть раньше края экрана
     vids.forEach(function (v) { io.observe(v); });
   }
 
