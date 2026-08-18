@@ -499,17 +499,21 @@ a, button { touch-action: manipulation; }
    initCaseVideo). Иначе на мобилке видна вспышка в момент, когда браузер
    меняет poster на видео-слой. Если webm не поддерживается, видео так и не
    проявится и останется картинка. */
+/* Пропорции задаёт контейнер, а не содержимое: иначе картинка и видео
+   считают размер каждый сам по себе (и до загрузки метаданных Safari берёт
+   для <video> дефолтные 300×150), из-за чего слои разъезжаются. Класс
+   аспекта — в разметке, рядом с .cm-video. */
 .ccard .cm-video { position: relative; }
-.ccard .cm-video img { display: block; width: 100%; height: auto; }
+.ccard .cm-video.ar-sq { aspect-ratio: 1 / 1; }
+.ccard .cm-video.ar-16x9 { aspect-ratio: 16 / 9; }
+/* оба слоя занимают контейнер целиком и кадрируются одинаково */
+.ccard .cm-video img,
 .ccard .cm-video video {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  /* object-fit обязателен: пока метаданные ролика не приехали, у <video>
-     внутренний размер 300×150, и при contain по умолчанию кадр вписался бы
-     полосой внутрь карточки. Аспекты файлов совпадают, так что cover ничего
-     не обрезает */
-  object-fit: cover;
+  position: absolute; inset: 0; display: block;
+  width: 100%; height: 100%; object-fit: cover;
+}
+.ccard .cm-video video {
   opacity: 0; transition: opacity .2s linear;
-  transform: translateZ(0);       /* свой слой — меньше перерисовок при скролле */
   z-index: 2;                     /* выше блика-плейсхолдера (::before, z-index: 1) */
 }
 .ccard .cm-video.playing video { opacity: 1; }
