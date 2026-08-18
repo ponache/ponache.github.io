@@ -46,6 +46,9 @@
 
 _Legacy: старая система `.feature-card` (типы cover/png/fill, `.media-only`/`.overlay`/`.span2`, container-queries) ещё живёт в не-мигрированных кейсах — постепенно заменяется на `.ccard`. Мигрированы: `internal-projects`, `platform-news`, `platform-companies`; остальные 3 — на старой системе до наполнения контентом._
 
+## Кэш стилей и скриптов
+`styles.css` и `main.js` подключены с версией: `styles.css?v=2`, `main.js?v=2`. **Правишь CSS/JS — бампи число во всех HTML** (`index`, `about`, `project-template`, все `projects/*/index.html`), иначе мобильные браузеры (особенно iOS Safari, где нет жёсткой перезагрузки) продолжат отдавать старый файл и правки «не применятся».
+
 ## Замок на карточках главной (не опубликованные кейсы)
 Плитки непубликованных проектов на `index.html` **заперты**: у `<a class="feed-item">` убран `href` и добавлен класс `.locked` (+ `aria-disabled`, локализованный `title` «Скоро»/«Coming soon»). Внутри `.feed-cover` лежит `<span class="lock">` с инлайн-SVG замка (`assets/`-исходник — `lockCloseEatsFill.svg`, но в разметке путь `fill:currentColor`, цвет белый). Стили — блок «Locked tiles» в `styles.css`: иконка 36×36 (моб. ≤600px — 24×24), отступ 24px (моб. 16px), hover-зум и press-скейл выключены. Затемнение — `.feed-cover::after`: большой радиальный градиент из левого-верхнего уголка (`circle at top left`, ~210px / моб. 140px), с одинаковой `mask-image` и `backdrop-filter: blur(2px)`, так что затемнение угла и блюр фона плавно угасают к центру. Крутилки: непрозрачность `rgba(0,0,0,.5)`, растекание `70%` в градиенте и маске, матовость `blur(2px)`. Заперты сейчас: `discounts-and-growth`, `order-and-support`, `international-mechanics`. Готовы (кликабельны): `platform-news`, `platform-companies`, `internal-projects`.
 

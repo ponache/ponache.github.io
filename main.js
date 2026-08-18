@@ -294,7 +294,13 @@
     // поверх статичной картинки (CSS .cm-video.playing)
     vids.forEach(function (v) {
       v.addEventListener("playing", function () {
+        // videoWidth появляется вместе с метаданными; без них Safari успевает
+        // отрисовать кадр по своему дефолтному размеру 300×150
+        if (!v.videoWidth) return;
         if (v.parentElement) v.parentElement.classList.add("playing");
+      });
+      v.addEventListener("loadedmetadata", function () {
+        if (!v.paused && v.parentElement) v.parentElement.classList.add("playing");
       });
     });
 
