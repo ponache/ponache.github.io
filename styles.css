@@ -510,8 +510,11 @@ a, button { touch-action: manipulation; }
   object-fit: cover;
   opacity: 0; transition: opacity .2s linear;
   transform: translateZ(0);       /* свой слой — меньше перерисовок при скролле */
+  z-index: 2;                     /* выше блика-плейсхолдера (::before, z-index: 1) */
 }
 .ccard .cm-video.playing video { opacity: 1; }
+/* ролик пошёл — блик больше не нужен, даже если картинка под ним ещё грузится */
+.ccard .cm-video.playing::before { opacity: 0; animation: none; }
 
 @media (max-width: 760px) {
   .ccard { border-radius: var(--radius); }
