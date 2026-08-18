@@ -67,10 +67,10 @@
            +.violet      фиолетовая заливка (одна карточка — апгрейд купонов)
          Метрики в тексте — <span class="metric"> (нужен data-html на <p>).
          Картинки: img/NN-sq.webp | img/NN-16x9.webp
-         Видео: img/NN-*.webm (VP9) + poster того же имени .webp. Если
-         браузер не умеет webm, останется статичный poster — этого хватает,
-         второй фолбэк не держим. Прогрев загрузки и play/pause по вьюпорту
-         делает initCaseVideo() в main.js.
+         Видео: .cm.cm-video = <img> с первым кадром (img/NN-*.webp) +
+         <video src="img/NN-*.webm"> слоем поверх. Видео проявляется только
+         когда заиграло, иначе на мобилке видна вспышка. Не умеет webm —
+         остаётся картинка. Прогрев и play/pause делает initCaseVideo().
          ============================================================ -->
     <div class="wrap">
       <div class="case-flow">
@@ -101,7 +101,7 @@
             <p data-ru="Сценарий начинается с фуллскрина, который объясняет, что с купонами заказы обходятся дешевле. Это первый триггер петли возврата и вход во всю механику. Анимация показывает выгоду быстрее, чем это сделал бы текст"
                data-en="The scenario opens with a fullscreen that explains how coupons make orders cheaper. It is the first trigger of the return loop and the entry point into the whole mechanic. The animation shows the value faster than any copy would">The scenario opens with a fullscreen that explains how coupons make orders cheaper. It is the first trigger of the return loop and the entry point into the whole mechanic. The animation shows the value faster than any copy would</p>
           </div>
-          <div class="cm"><video src="img/03-sq.webm" poster="img/03-sq.webp" width="1400" height="1400" muted loop playsinline preload="auto" aria-hidden="true"></video></div>
+          <div class="cm cm-video"><img src="img/03-sq.webp" width="1400" height="1400" alt="" loading="lazy"><video src="img/03-sq.webm" width="1400" height="1400" muted loop playsinline preload="auto" aria-hidden="true"></video></div>
         </div>
 
         <!-- 04 · Точка входа на главной (видео) -->
@@ -111,7 +111,7 @@
             <p data-ru="Купоны видно с первого экрана. Баннер показывает сумму доступной выгоды и ведёт в дом купонов. Параллельно работают входы из таббара, профиля, меню и чекаута, поэтому пользователь не теряет свои купоны между сессиями. Для РФ и для международных рынков сделал два разных ключевых визуала, потому что механика одна, а контекст и валюты разные"
                data-en="Coupons are visible from the very first screen. The banner shows the total available savings and leads into the coupon home. Entry points from the tab bar, profile, menu and checkout work in parallel, so people never lose track of their coupons between sessions. I designed two different key visuals, one for Russia and one for international markets, because the mechanic is the same while the context and currencies are not">Coupons are visible from the very first screen. The banner shows the total available savings and leads into the coupon home. Entry points from the tab bar, profile, menu and checkout work in parallel, so people never lose track of their coupons between sessions. I designed two different key visuals, one for Russia and one for international markets, because the mechanic is the same while the context and currencies are not</p>
           </div>
-          <div class="cm"><video src="img/04-sq.webm" poster="img/04-sq.webp" width="1400" height="1400" muted loop playsinline preload="auto" aria-hidden="true"></video></div>
+          <div class="cm cm-video"><img src="img/04-sq.webp" width="1400" height="1400" alt="" loading="lazy"><video src="img/04-sq.webm" width="1400" height="1400" muted loop playsinline preload="auto" aria-hidden="true"></video></div>
         </div>
 
         <!-- 05 · Экран меню -->
@@ -141,7 +141,7 @@
             <p data-ru="На чекауте купон применяется без ухода с экрана. Информер показывает, сколько пользователь экономит на этом заказе и какой купон сработал. Если выгоднее применить другой, подсказка предложит замену"
                data-en="At checkout a coupon applies without leaving the screen. The informer shows how much this order saves and which coupon did it. If another one is worth more, a hint offers the swap">At checkout a coupon applies without leaving the screen. The informer shows how much this order saves and which coupon did it. If another one is worth more, a hint offers the swap</p>
           </div>
-          <div class="cm"><video src="img/07-sq.webm" poster="img/07-sq.webp" width="1400" height="1400" muted loop playsinline preload="auto" aria-hidden="true"></video></div>
+          <div class="cm cm-video"><img src="img/07-sq.webp" width="1400" height="1400" alt="" loading="lazy"><video src="img/07-sq.webm" width="1400" height="1400" muted loop playsinline preload="auto" aria-hidden="true"></video></div>
         </div>
 
         <!-- 08 · Лайт-чекаут -->
@@ -161,7 +161,7 @@
             <p data-html data-ru="Купоны можно улучшать. Пользователь приходит по внешнему каналу, например от блогера, получает бустер и повышает номинал сразу всего набора. Ограниченный срок действия создаёт FOMO-эффект, который сильно качает новичков. Похожие механики хорошо работают у азиатских конкурентов, я разобрал их и адаптировал под наш флоу и под запуск новых стран. На новых рынках механика дала <span class='metric'>+10% заказов новичков</span>"
                data-en="Coupons can be improved. Someone arrives through an external channel, a blogger for example, gets a booster and raises the value of the whole set at once. A limited validity window creates a FOMO effect that pushes new users hard. Similar mechanics work well for Asian competitors, so I took them apart and adapted them to our flow and to the launch of new countries. On the new markets it delivered <span class='metric'>+10% orders from new users</span>">Coupons can be improved. Someone arrives through an external channel, a blogger for example, gets a booster and raises the value of the whole set at once. A limited validity window creates a FOMO effect that pushes new users hard. Similar mechanics work well for Asian competitors, so I took them apart and adapted them to our flow and to the launch of new countries. On the new markets it delivered <span class='metric'>+10% orders from new users</span></p>
           </div>
-          <div class="cm"><video src="img/09-16x9.webm" poster="img/09-16x9.webp" width="2490" height="1400" muted loop playsinline preload="auto" aria-hidden="true"></video></div>
+          <div class="cm cm-video"><img src="img/09-16x9.webp" width="2490" height="1400" alt="" loading="lazy"><video src="img/09-16x9.webm" width="2490" height="1400" muted loop playsinline preload="auto" aria-hidden="true"></video></div>
         </div>
 
         <!-- ГРУППА 2 · Выгода на корзине -->

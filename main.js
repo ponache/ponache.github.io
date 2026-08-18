@@ -290,11 +290,12 @@
     var vids = document.querySelectorAll(".ccard .cm video");
     if (!vids.length) return;
 
-    // блик-плейсхолдер под видео не нужен: у ролика сразу есть poster.
-    // В CSS он снят через :has(video), но в Safari до 16.4 :has() нет —
-    // там гасит этот класс
+    // ролик прозрачный, пока не пошли настоящие кадры — тогда проявляем его
+    // поверх статичной картинки (CSS .cm-video.playing)
     vids.forEach(function (v) {
-      if (v.parentElement) v.parentElement.classList.add("media-loaded");
+      v.addEventListener("playing", function () {
+        if (v.parentElement) v.parentElement.classList.add("playing");
+      });
     });
 
     var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
