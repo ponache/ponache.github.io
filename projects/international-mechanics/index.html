@@ -59,91 +59,137 @@
     </section>
 
     <!-- ============================================================
-         КЕЙС — плашки. Сетка 2 колонки, отступы 24px.
-
-         ТРИ ТИПА (класс .feature-card + модификатор):
-           .media-only    ТИП 1 · Обложка — только картинка, без текста
-           (базовый)      ТИП 2 · Текст + PNG — текст сверху, PNG снизу на серой плашке
-           .overlay       ТИП 3 · Текст + заливка — картинка на всю плашку, белый текст поверх
-         МОДИФИКАТОРЫ (комбинируются с ЛЮБЫМ типом):
-           .span2         на всю ширину сетки (без него — половина, 1 колонка)
-           .dark          тёмная плашка (для типа 2)
-
-         КАРТИНКИ лежат в projects/<slug>/img/ и именуются:
-           {NN}-{type}[-{mod}...].{ext}
-           NN=порядок (01,02…) · type=cover|png|fill · mod=wide|dark
-           напр.: 01-cover-wide.webp · 02-png.webp · 03-png-dark.webp · 04-fill-wide.webp
-         Плейсхолдер <div class="ph"> заменяется на <img src="img/…" alt="">.
+         КЕЙС — карточки (v2). Одна карточка = опц. текст сверху + одна
+         картинка на сером. Аспект задаёт сама картинка (прозрачный PNG).
+           .ccard        половина ширины
+           +.full        на всю ширину сетки
+           +.fill        без текста — картинка на всю карточку
+           +.dark        тёмная
+         Метрики в тексте — <span class="metric"> (нужен data-html на <p>).
+         Картинки: img/NN-sq.webp | img/NN-16x9.webp
          ============================================================ -->
     <div class="wrap">
       <div class="case-flow">
 
-        <!-- ТИП 1 · Обложка на всю ширину — 01-cover-wide.webp -->
-        <div class="feature-card media-only span2 reveal">
-          <div class="ft-media"><img src="img/01-cover-wide.webp" width="4000" height="2250" alt=""></div>
+        <!-- Обложка кейса — 16:9, без текста -->
+        <div class="ccard fill full reveal">
+          <div class="cm"><img src="img/01-cover-wide.webp" width="4000" height="2250" alt="" loading="eager"></div>
         </div>
 
-        <!-- ТИП 2 · Текст + PNG (серая) — 02-png.webp -->
-        <div class="feature-card reveal">
-          <div class="ft-text">
-            <h3 data-ru="Контекст и задача" data-en="Context & problem">Контекст и задача</h3>
-            <p data-ru="Что за продукт, какую проблему испытывали пользователи и какую цель поставили."
-               data-en="The product, the problem users faced, and the goal you set.">Что за продукт, какую проблему испытывали пользователи и какую цель поставили.</p>
+        <!-- ГРУППА 1 · Адреса -->
+
+        <!-- 02 · Исследования -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Адреса в разных странах" data-en="Addresses across countries">Addresses across countries</h3>
+            <p data-ru="Недовозы упирались не в интерфейс, а в саму модель адреса: в Абиджане ориентир важнее улицы, в Ла-Пасе у дома может не быть номера, в СНГ работает привычная схема. Чтобы найти реальные паттерны, я провёл около 30 встреч с пользователями, запустил порядка 40 опросов с выборкой по 100 человек и инициировал два исследования с UX-лабораторией"
+               data-en="Failed deliveries weren't an interface problem — they came from the address model itself: in Abidjan a landmark matters more than a street, in La Paz a building may have no number, and in the CIS the familiar scheme works fine. To find the real patterns I ran about 30 user interviews, launched around 40 surveys with 100 respondents each, and initiated two studies with the UX lab">Failed deliveries weren't an interface problem — they came from the address model itself: in Abidjan a landmark matters more than a street, in La Paz a building may have no number, and in the CIS the familiar scheme works fine. To find the real patterns I ran about 30 user interviews, launched around 40 surveys with 100 respondents each, and initiated two studies with the UX lab</p>
           </div>
-          <div class="ft-media"><div class="ph">PNG · 02-png</div></div>
+          <div class="cm"><img src="img/02-sq.webp" width="2800" height="2800" alt="" loading="lazy"></div>
         </div>
 
-        <!-- ТИП 2 · Текст + PNG, тёмная — 03-png-dark.webp -->
-        <div class="feature-card dark reveal">
-          <div class="ft-text">
-            <h3 data-ru="Что выяснили" data-en="What we learned">Что выяснили</h3>
-            <p data-ru="Интервью, данные, конкуренты — ключевые инсайты, на которых строилось решение."
-               data-en="Interviews, data, competitors — the key insights the solution was built on.">Интервью, данные, конкуренты — ключевые инсайты, на которых строилось решение.</p>
+        <!-- 03 · Сохранённые адреса -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Сохранённые адреса" data-en="Saved addresses">Saved addresses</h3>
+            <p data-ru="Переструктурировал модалку адресов: типы адресов стали различимы, редактирование доступно прямо из списка, время доставки и добавление нового адреса собраны в один слой. Пользователи перестали терять свои адреса и плодить дубли, которые потом выбирались по ошибке"
+               data-en="I restructured the saved addresses modal: address types are now distinguishable, editing is available straight from the list, and delivery time and adding a new address live in one layer. People stopped losing their addresses and creating duplicates that later got picked by mistake">I restructured the saved addresses modal: address types are now distinguishable, editing is available straight from the list, and delivery time and adding a new address live in one layer. People stopped losing their addresses and creating duplicates that later got picked by mistake</p>
           </div>
-          <div class="ft-media"><div class="ph on-dark">PNG · 03-png-dark</div></div>
+          <div class="cm"><img src="img/03-sq.webp" width="2800" height="2800" alt="" loading="lazy"></div>
         </div>
 
-        <!-- ТИП 3 · Текст + заливка на всю ширину — 04-fill-wide.webp -->
-        <div class="feature-card overlay span2 reveal">
-          <div class="ft-text">
-            <h3 data-ru="Как шли к решению" data-en="How we got there">Как шли к решению</h3>
-            <p data-ru="Ход мысли: гипотезы, скетчи, прототипы, тестирование."
-               data-en="The thinking: hypotheses, sketches, prototypes, testing.">Ход мысли: гипотезы, скетчи, прототипы, тестирование.</p>
+        <!-- 04 · Выбор адреса на карте -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Выбор адреса на карте" data-en="Choosing an address on the map">Choosing an address on the map</h3>
+            <p data-ru="Пин на карте отвечает за точку, а форма под картой за то, как эту точку объяснить курьеру. Состав полей и подсказок меняется в зависимости от страны: где-то важен номер здания, где-то достаточно ориентира и входа в комплекс. Саджесты подставляются контекстно, чтобы человеку не приходилось описывать своё местоположение словами"
+               data-en="The pin on the map handles the point, and the form below it handles explaining that point to the courier. The set of fields and hints changes from country to country: somewhere a building number matters, somewhere a landmark and the entrance to the complex are enough. Suggestions come up contextually so nobody has to describe their location in words">The pin on the map handles the point, and the form below it handles explaining that point to the courier. The set of fields and hints changes from country to country: somewhere a building number matters, somewhere a landmark and the entrance to the complex are enough. Suggestions come up contextually so nobody has to describe their location in words</p>
           </div>
-          <div class="ft-media"><div class="ph on-dark">Заливка · 04-fill-wide</div></div>
+          <div class="cm"><img src="img/04-sq.webp" width="2800" height="2800" alt="" loading="lazy"></div>
         </div>
 
-        <!-- ТИП 2 · Текст + PNG (серая) — 05-png.webp -->
-        <div class="feature-card reveal">
-          <div class="ft-text">
-            <h3 data-ru="Внимание к деталям" data-en="Attention to detail">Внимание к деталям</h3>
-            <p data-ru="Состояния, микровзаимодействия, граничные случаи."
-               data-en="States, micro-interactions, edge cases.">Состояния, микровзаимодействия, граничные случаи.</p>
+        <!-- 05 · Поиск адреса -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Поиск адреса" data-en="Address search">Address search</h3>
+            <p data-ru="Подсказки появляются по мере ввода, вместе с предложением поделиться геолокацией — так курьеру проще найти человека. Каждый результат показываем с районом: одинаковые названия улиц в разных районах одного города для этих рынков норма, и именно на этом раньше терялись заказы"
+               data-en="Hints appear as you type, along with an offer to share your geolocation — it makes you easier for the courier to find. Every result comes with its district: identical street names in different districts of the same city are the norm in these markets, and that is exactly where orders used to get lost">Hints appear as you type, along with an offer to share your geolocation — it makes you easier for the courier to find. Every result comes with its district: identical street names in different districts of the same city are the norm in these markets, and that is exactly where orders used to get lost</p>
           </div>
-          <div class="ft-media"><div class="ph">PNG · 05-png</div></div>
+          <div class="cm"><img src="img/05-sq.webp" width="2800" height="2800" alt="" loading="lazy"></div>
         </div>
 
-        <!-- ТИП 2 · Текст + PNG (серая) — 06-png.webp -->
-        <div class="feature-card reveal">
-          <div class="ft-text">
-            <h3 data-ru="Финальное решение" data-en="The solution">Финальное решение</h3>
-            <p data-ru="Ключевые экраны и почему именно так."
-               data-en="The key screens and why it works this way.">Ключевые экраны и почему именно так.</p>
+        <!-- 06 · Пограничные состояния -->
+        <div class="ccard full reveal">
+          <div class="ct">
+            <h3 data-ru="Пограничные состояния" data-en="Edge states">Edge states</h3>
+            <p data-html data-ru="Отдельно проработал сценарии, где пользователь раньше упирался в тупик: адрес вне зоны доставки и сбой сервиса при подборе адреса. Вместо пустого экрана — честное объяснение, что происходит, и одно понятное действие. После этого <span class='metric'>стоимость отказов снизилась</span> на всех международных рынках"
+               data-en="I worked separately on the scenarios where people used to hit a dead end: an address outside the delivery zone and a service failure during address lookup. Instead of an empty screen — an honest explanation of what is happening and one clear action. After that <span class='metric'>the cost of rejects went down</span> across every international market">I worked separately on the scenarios where people used to hit a dead end: an address outside the delivery zone and a service failure during address lookup. Instead of an empty screen — an honest explanation of what is happening and one clear action. After that <span class='metric'>the cost of rejects went down</span> across every international market</p>
           </div>
-          <div class="ft-media"><div class="ph">PNG · 06-png</div></div>
+          <div class="cm"><img src="img/06-16x9.webp" width="4978" height="2800" alt="" loading="lazy"></div>
         </div>
 
-        <!-- ТИП 2 · результат на всю ширину (со списком) — 07-png-wide.webp -->
-        <div class="feature-card span2 reveal">
-          <div class="ft-text">
-            <h3 data-ru="Чем закончилось" data-en="The outcome">Чем закончилось</h3>
-            <ul>
-              <li data-ru="+ XX% к ключевой метрике" data-en="+ XX% on the key metric">+ XX% к ключевой метрике</li>
-              <li data-ru="Сократили путь пользователя с N до M шагов" data-en="Reduced the user flow from N to M steps">Сократили путь пользователя с N до M шагов</li>
-              <li data-ru="Решение легло в основу дизайн-системы" data-en="The solution became the basis of the design system">Решение легло в основу дизайн-системы</li>
-            </ul>
+        <!-- 07 · Блокирующий сценарий -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Обязательное уточнение адреса" data-en="Mandatory address confirmation">Mandatory address confirmation</h3>
+            <p data-html data-ru="Если адрес выглядит проблемным или расходится с геопозицией, флоу останавливается: подтвердить или изменить адрес нужно до оформления заказа. Инструмент жёсткий, поэтому включается точечно — только там, где вероятность недовоза высокая. На таких рынках отмены из-за адреса упали <span class='metric'>почти вдвое</span>"
+               data-en="If an address looks risky or drifts away from the geolocation, the flow stops: you have to confirm or change it before placing the order. It's a blunt instrument, so it's switched on selectively — only where the odds of a failed delivery are high. In those markets cancellations caused by addresses dropped <span class='metric'>by almost half</span>">If an address looks risky or drifts away from the geolocation, the flow stops: you have to confirm or change it before placing the order. It's a blunt instrument, so it's switched on selectively — only where the odds of a failed delivery are high. In those markets cancellations caused by addresses dropped <span class='metric'>by almost half</span></p>
           </div>
-          <div class="ft-media"><div class="ph">PNG · 07-png-wide</div></div>
+          <div class="cm"><img src="img/07-sq.webp" width="2800" height="2800" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- 08 · Проактивное уточнение -->
+        <div class="ccard reveal">
+          <div class="ct">
+            <h3 data-ru="Проактивное уточнение" data-en="Proactive address check">Proactive address check</h3>
+            <p data-ru="Компактный виджет появляется на разных этапах воронки и предлагает подтвердить или поправить адрес, пока заказ ещё не ушёл курьеру. Он не блокирует пользователя, поэтому показывается шире, чем блокирующий экран"
+               data-en="A compact widget shows up at different points in the funnel and offers to confirm or fix the address while the order hasn't reached the courier yet. It doesn't block anyone, so it can run much wider than the blocking screen">A compact widget shows up at different points in the funnel and offers to confirm or fix the address while the order hasn't reached the courier yet. It doesn't block anyone, so it can run much wider than the blocking screen</p>
+          </div>
+          <div class="cm"><img src="img/08-sq.webp" width="2800" height="2800" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- ГРУППА 2 · Недозвоны -->
+
+        <!-- 09 · Телефон в профиле и на чекауте -->
+        <div class="ccard full reveal">
+          <div class="ct">
+            <h3 data-ru="Актуальный номер телефона" data-en="The right phone number">The right phone number</h3>
+            <p data-ru="Вторая причина недовозов — недозвоны. Неактуальный номер подсвечивается в профиле и на чекауте, сменить его можно в один шаг, в том числе уже после создания заказа. Курьер дозванивается с первой попытки чаще, а поддержка получает меньше обращений"
+               data-en="The second reason for failed deliveries is unreachable customers. An outdated number is highlighted in the profile and at checkout, and it can be changed in one step, including after the order is placed. Couriers get through on the first call more often, and support gets fewer tickets">The second reason for failed deliveries is unreachable customers. An outdated number is highlighted in the profile and at checkout, and it can be changed in one step, including after the order is placed. Couriers get through on the first call more often, and support gets fewer tickets</p>
+          </div>
+          <div class="cm"><img src="img/09-16x9.webp" width="4978" height="2800" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- ГРУППА 3 · Подписка (тёмные) -->
+
+        <!-- 10 · Офферы в ленте -->
+        <div class="ccard dark reveal">
+          <div class="ct">
+            <h3 data-ru="Выгоднее с подпиской" data-en="Better with a subscription">Better with a subscription</h3>
+            <p data-ru="Скидки по подписке перестали быть текстом в настройках: они видны прямо в ленте ресторанов фиолетовыми бейджами. Подписчик понимает свою выгоду ещё до входа в меню, неподписчик видит конкретную сумму, которую теряет"
+               data-en="Subscription discounts stopped being a line of text in settings: they show up right in the restaurant feed as purple badges. A subscriber understands the benefit before opening the menu, and everyone else sees the exact amount they are leaving on the table">Subscription discounts stopped being a line of text in settings: they show up right in the restaurant feed as purple badges. A subscriber understands the benefit before opening the menu, and everyone else sees the exact amount they are leaving on the table</p>
+          </div>
+          <div class="cm"><img src="img/10-sq-dark.webp" width="2800" height="2800" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- 11 · Промо-карусель -->
+        <div class="ccard dark reveal">
+          <div class="ct">
+            <h3 data-ru="Карусель глубоких скидок" data-en="A carousel of deep discounts">A carousel of deep discounts</h3>
+            <p data-ru="Промо-полка построена вокруг блюд, а не ресторанов. Пользователь сразу видит конкретное блюдо и его цену по подписке рядом с обычной. Яркий фиолетовый блок хорошо считывается в плотной ленте и ведёт либо в ресторан, либо на оформление подписки"
+               data-en="The promo shelf is built around dishes rather than restaurants. You immediately see a specific dish with its subscription price next to the regular one. The bright purple block reads well in a dense feed and leads either to the restaurant or to the subscription">The promo shelf is built around dishes rather than restaurants. You immediately see a specific dish with its subscription price next to the regular one. The bright purple block reads well in a dense feed and leads either to the restaurant or to the subscription</p>
+          </div>
+          <div class="cm"><img src="img/11-sq-dark.webp" width="2800" height="2800" alt="" loading="lazy"></div>
+        </div>
+
+        <!-- 12 · Меню: подписчик и неподписчик -->
+        <div class="ccard full dark reveal">
+          <div class="ct">
+            <h3 data-ru="Подписчик и неподписчик" data-en="Subscriber and non-subscriber">Subscriber and non-subscriber</h3>
+            <p data-ru="Глубокие скидки и скидка на доставку показываются по-разному двум аудиториям: подписчик видит итоговую цену и свой прогресс до бесплатной доставки, неподписчик — насколько дешевле тот же заказ был бы с подпиской. Один экран закрывает сразу две задачи: удержание подписчиков и конверсию в подписку"
+               data-en="Deep discounts and the delivery discount are shown differently to two audiences: a subscriber sees the final price and their progress towards free delivery, while everyone else sees how much cheaper the same order would be with a subscription. One screen covers two jobs at once: retaining subscribers and converting new ones">Deep discounts and the delivery discount are shown differently to two audiences: a subscriber sees the final price and their progress towards free delivery, while everyone else sees how much cheaper the same order would be with a subscription. One screen covers two jobs at once: retaining subscribers and converting new ones</p>
+          </div>
+          <div class="cm"><img src="img/12-16x9-dark.webp" width="4978" height="2800" alt="" loading="lazy"></div>
         </div>
 
       </div>
